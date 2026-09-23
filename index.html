@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Accretion — Informativa sulla privacy</title>
+<style>
+  :root {
+    --void: #05060d;
+    --panel: rgba(12, 16, 32, 0.72);
+    --edge: rgba(125, 216, 255, 0.18);
+    --cyan: #7dd8ff;
+    --gold: #ffe27d;
+    --text: #e6eefb;
+    --dim: #93a4bd;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(125,216,255,0.10), transparent 60%),
+      radial-gradient(circle at 50% 40%, #0d1230 0%, var(--void) 78%);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem 5rem; }
+
+  header { padding: 4.5rem 0 2.5rem; }
+  .eyebrow { color: var(--dim); font-size: 0.86rem; margin: 0 0 0.9rem; }
+  h1 {
+    font-size: clamp(1.9rem, 6vw, 2.9rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+  .lede { font-size: 1.08rem; color: var(--dim); margin: 0; max-width: 34rem; }
+
+  .verdict {
+    margin: 2.25rem 0 0;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--edge);
+    border-left: 3px solid var(--cyan);
+    border-radius: 4px;
+    background: var(--panel);
+  }
+  .verdict p { margin: 0; font-size: 1.05rem; }
+  .verdict strong { color: var(--cyan); font-weight: 600; }
+
+  section { padding-top: 2.75rem; }
+  h2 {
+    font-size: 1.22rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.85rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(125, 216, 255, 0.14);
+  }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; }
+  li { margin-bottom: 0.45rem; }
+  li::marker { color: var(--cyan); }
+  strong { color: var(--text); font-weight: 600; }
+  a { color: var(--cyan); }
+
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(125, 216, 255, 0.14);
+    color: var(--dim);
+    font-size: 0.9rem;
+  }
+  .langs { margin: 0 0 2rem; font-size: 0.9rem; color: var(--dim); }
+  .langs a { margin-right: 1rem; }
+
+  [lang="en"] { display: none; }
+  body.en [lang="it"] { display: none; }
+  body.en [lang="en"] { display: block; }
+  body.en li[lang="en"] { display: list-item; }
+  body.en span[lang="en"] { display: inline; }
+
+  @media (prefers-color-scheme: light) {
+    :root { --text: #101725; --dim: #4a5a72; --panel: rgba(255,255,255,0.7); --edge: rgba(20,60,110,0.18); --cyan: #0a6ea8; --gold: #8a6100; }
+    body { background: radial-gradient(circle at 50% 30%, #f4f7fd 0%, #e8edf6 80%); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="langs">
+    <a href="#" onclick="document.body.classList.remove('en');return false">Italiano</a>
+    <a href="#" onclick="document.body.classList.add('en');return false">English</a>
+  </p>
+
+  <header>
+    <p class="eyebrow" lang="it">Accretion</p>
+    <p class="eyebrow" lang="en">Accretion</p>
+    <h1 lang="it">Informativa sulla privacy</h1>
+    <h1 lang="en">Privacy policy</h1>
+    <p class="lede" lang="it">Questa informativa spiega come Accretion tratta i dati. La versione breve: non ne raccoglie nessuno.</p>
+    <p class="lede" lang="en">This policy explains how Accretion handles data. The short version: it collects none.</p>
+
+    <div class="verdict">
+      <p lang="it">Il gioco funziona <strong>interamente sul tuo dispositivo</strong>. Non si collega a internet, non raccoglie dati personali, non li invia a nessuno e non contiene pubblicità né strumenti di analisi.</p>
+      <p lang="en">The game runs <strong>entirely on your device</strong>. It does not connect to the internet, collect personal data, send anything anywhere, and it contains no ads or analytics.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2 lang="it">Chi siamo</h2>
+    <h2 lang="en">Who we are</h2>
+    <p lang="it">Accretion è sviluppato e pubblicato da Thomas Albertini. Per qualsiasi domanda su questa informativa puoi scrivere a <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+    <p lang="en">Accretion is developed and published by Thomas Albertini. For any question about this policy, write to <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Cosa resta sul tuo dispositivo</h2>
+    <h2 lang="en">What stays on your device</h2>
+    <p lang="it">Per ricordare i tuoi progressi fra una partita e l'altra, il gioco salva alcune informazioni nella memoria dell'app, sul telefono. Non lasciano mai il dispositivo:</p>
+    <p lang="en">To remember your progress between sessions, the game saves some information in the app's storage on your phone. It never leaves the device:</p>
+    <ul lang="it">
+      <li>l'avanzamento di gioco: livello, massa accumulata, corpi divorati, vittorie, partite giocate</li>
+      <li>i tuoi record e le statistiche delle partite migliori</li>
+      <li>sfide giornaliere e settimanali, ricompense e token</li>
+      <li>le personalizzazioni: stile del buco nero, colore, sfondo, avatar</li>
+      <li>le preferenze: lingua, volume di musica ed effetti, vibrazione, zoom</li>
+      <li>il nome che scegli per te nel profilo</li>
+    </ul>
+    <ul lang="en">
+      <li>game progress: level, accumulated mass, bodies devoured, wins, matches played</li>
+      <li>your records and the statistics of your best matches</li>
+      <li>daily and weekly challenges, rewards and tokens</li>
+      <li>customisation: black hole style, colour, background, avatar</li>
+      <li>preferences: language, music and effects volume, vibration, zoom</li>
+      <li>the name you choose for your profile</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 lang="it">Il nome del profilo</h2>
+    <h2 lang="en">Your profile name</h2>
+    <p lang="it">Il nome del profilo serve solo a comparire accanto al tuo buco nero durante la partita. Puoi scriverci quello che vuoi: non viene verificato, non è collegato a nessun account e non lascia il telefono. Gli avatar sono tutti disegnati dal gioco: non è possibile caricare immagini proprie.</p>
+    <p lang="en">The profile name only appears next to your black hole during a match. You can write whatever you like: it is not verified, not linked to any account, and never leaves the phone. All avatars are drawn by the game: you cannot upload your own images.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Cosa il gioco chiede al telefono</h2>
+    <h2 lang="en">What the game asks of your phone</h2>
+    <p lang="it">Soltanto la <strong>vibrazione</strong>, per il breve ritorno tattile quando tocchi un pulsante. Puoi disattivarla in Personalizza. Il gioco non accede a foto, fotocamera, contatti, posizione, microfono o file del telefono.</p>
+    <p lang="en">Only <strong>vibration</strong>, for the short tactile response when you tap a button. You can turn it off in Customise. The game does not access your photos, camera, contacts, location, microphone or files.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Cosa il gioco non fa</h2>
+    <h2 lang="en">What the game does not do</h2>
+    <ul lang="it">
+      <li>Non raccoglie né trasmette dati personali</li>
+      <li>Non richiede la creazione di un account</li>
+      <li>Non contiene pubblicità</li>
+      <li>Non usa strumenti di analisi o di tracciamento</li>
+      <li>Non condivide informazioni con terze parti</li>
+      <li>Non usa cookie né identificatori pubblicitari</li>
+      <li>Non ha bisogno di una connessione a internet per funzionare</li>
+    </ul>
+    <ul lang="en">
+      <li>It does not collect or transmit personal data</li>
+      <li>It does not require an account</li>
+      <li>It contains no advertising</li>
+      <li>It uses no analytics or tracking tools</li>
+      <li>It does not share information with third parties</li>
+      <li>It uses no cookies or advertising identifiers</li>
+      <li>It does not need an internet connection to work</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 lang="it">Come cancellare i tuoi dati</h2>
+    <h2 lang="en">How to delete your data</h2>
+    <p lang="it">Trattandosi di dati che non escono dal dispositivo, li controlli tu. Puoi azzerare l'avanzamento dal menù Personalizza, oppure cancellare tutto insieme disinstallando l'app o svuotandone i dati dalle impostazioni di Android. Non conserviamo copie da nessuna parte, quindi non c'è nulla da chiederci di cancellare.</p>
+    <p lang="en">Since this data never leaves your device, you are in control of it. You can reset your progress from the Customise menu, or delete everything at once by uninstalling the app or clearing its data in the Android settings. We keep no copies anywhere, so there is nothing to ask us to delete.</p>
+    <p lang="it">Il gioco offre anche un codice di backup che puoi generare e conservare dove preferisci per ritrovare i tuoi progressi su un altro telefono. Quel codice lo crei e lo custodisci tu: non ne riceviamo copia.</p>
+    <p lang="en">The game also offers a backup code you can generate and keep wherever you like, to restore your progress on another phone. You create and keep that code yourself: we never receive a copy.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Bambini</h2>
+    <h2 lang="en">Children</h2>
+    <p lang="it">Il gioco è adatto a tutte le età e non raccoglie dati da nessuno, bambini compresi. Non chiede l'età, non richiede un account e non contiene pubblicità né acquisti.</p>
+    <p lang="en">The game is suitable for all ages and collects no data from anyone, children included. It does not ask for age, does not require an account, and contains no ads or purchases.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Funzioni in arrivo</h2>
+    <h2 lang="en">Upcoming features</h2>
+    <p lang="it">Le partite online e l'acquisto di token sono in sviluppo e in questa versione non sono attivi. Quando saranno disponibili tratteranno dati diversi da quelli descritti qui — il nome del profilo verrebbe mostrato agli altri giocatori, e gli acquisti passerebbero da Google Play. Questa informativa verrà aggiornata prima che quelle funzioni vengano attivate.</p>
+    <p lang="en">Online matches and token purchases are in development and are not active in this version. When they arrive they will involve data beyond what is described here — your profile name would be shown to other players, and purchases would go through Google Play. This policy will be updated before those features are switched on.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Modifiche a questa informativa</h2>
+    <h2 lang="en">Changes to this policy</h2>
+    <p lang="it">Se cambierà il modo in cui il gioco tratta i dati, aggiorneremo questa pagina e la data qui sotto. Le modifiche sostanziali verranno segnalate anche nelle note della versione sul Play Store.</p>
+    <p lang="en">If the way the game handles data changes, we will update this page and the date below. Substantial changes will also be noted in the release notes on the Play Store.</p>
+  </section>
+
+  <footer>
+    <p lang="it">Ultimo aggiornamento: 23 settembre 2026 · Contatto: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="en">Last updated: 23 September 2026 · Contact: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
