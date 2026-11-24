@@ -78,14 +78,14 @@
     color: var(--dim);
     font-size: 0.9rem;
   }
-  .langs { margin: 0 0 2rem; font-size: 0.9rem; color: var(--dim); }
-  .langs a { margin-right: 1rem; }
+  .langs { margin: 0 0 2rem; padding-top: 1.25rem; font-size: 0.9rem; color: var(--dim); line-height: 2; }
+  .langs a { margin-right: 1rem; white-space: nowrap; text-decoration: none; }
+  .langs a.ora { color: var(--text); font-weight: 600; }
 
-  [lang="en"] { display: none; }
-  body.en [lang="it"] { display: none; }
-  body.en [lang="en"] { display: block; }
-  body.en li[lang="en"] { display: list-item; }
-  body.en span[lang="en"] { display: inline; }
+  /* sei lingue: si vede solo quella scelta (data-l sul body; senza JavaScript resta l'italiano) */
+  .wrap [lang] { display: none; }
+  body[data-l="it"] .wrap [lang="it"], body[data-l="en"] .wrap [lang="en"], body[data-l="fr"] .wrap [lang="fr"],
+  body[data-l="es"] .wrap [lang="es"], body[data-l="de"] .wrap [lang="de"], body[data-l="pt"] .wrap [lang="pt-BR"] { display: revert; }
 
   @media (prefers-color-scheme: light) {
     :root { --text: #101725; --dim: #4a5a72; --panel: rgba(255,255,255,0.7); --edge: rgba(20,60,110,0.18); --cyan: #0a6ea8; --gold: #8a6100; }
@@ -93,72 +93,161 @@
   }
 </style>
 </head>
-<body>
+<body data-l="it">
 <div class="wrap">
 
   <p class="langs">
-    <a href="#" onclick="document.body.classList.remove('en');return false">Italiano</a>
-    <a href="#" onclick="document.body.classList.add('en');return false">English</a>
+    <a href="#it" data-l="it">Italiano</a>
+    <a href="#en" data-l="en">English</a>
+    <a href="#fr" data-l="fr">Français</a>
+    <a href="#es" data-l="es">Español</a>
+    <a href="#de" data-l="de">Deutsch</a>
+    <a href="#pt" data-l="pt">Português (Brasil)</a>
   </p>
 
   <header>
-    <p class="eyebrow" lang="it">Black Hole Rumble</p>
-    <p class="eyebrow" lang="en">Black Hole Rumble</p>
+    <p class="eyebrow">Black Hole Rumble</p>
     <h1 lang="it">Informativa sulla privacy</h1>
     <h1 lang="en">Privacy policy</h1>
-    <p class="lede" lang="it">Questa informativa spiega come Black Hole Rumble tratta i dati. Vale per l'app per Android, per l'app per iPhone e per la versione nel browser. La versione breve: niente account, niente pubblicità, niente tracciamento, e nessun dato conservato da noi.</p>
-    <p class="lede" lang="en">This policy explains how Black Hole Rumble handles data. It covers the Android app, the iPhone app and the browser version. The short version: no accounts, no ads, no tracking, and no data stored by us.</p>
+    <h1 lang="fr">Politique de confidentialité</h1>
+    <h1 lang="es">Política de privacidad</h1>
+    <h1 lang="de">Datenschutzerklärung</h1>
+    <h1 lang="pt-BR">Política de privacidade</h1>
+    <p class="lede" lang="it">Questa informativa spiega come Black Hole Rumble tratta i dati. Vale per l'app per Android, per l'app per iPhone e per la versione nel browser. La versione breve: niente account, niente pubblicità, niente tracciamento e nessun dato personale conservato; solo statistiche anonime, che puoi spegnere.</p>
+    <p class="lede" lang="en">This policy explains how Black Hole Rumble handles data. It covers the Android app, the iPhone app and the browser version. The short version: no accounts, no ads, no tracking and no personal data stored; only anonymous statistics, which you can turn off.</p>
+    <p class="lede" lang="fr">Cette politique explique comment Black Hole Rumble traite les données. Elle s’applique à l’app Android, à l’app iPhone et à la version navigateur. En bref : pas de compte, pas de publicité, pas de pistage et aucune donnée personnelle conservée ; seulement des statistiques anonymes, que tu peux désactiver.</p>
+    <p class="lede" lang="es">Esta política explica cómo trata los datos Black Hole Rumble. Vale para la app de Android, la app de iPhone y la versión del navegador. En resumen: sin cuentas, sin publicidad, sin rastreo y sin guardar datos personales; solo estadísticas anónimas, que puedes desactivar.</p>
+    <p class="lede" lang="de">In dieser Datenschutzerklärung steht, wie Black Hole Rumble mit Daten umgeht. Sie gilt für die Android-App, die iPhone-App und die Browserversion. Kurz gesagt: kein Konto, keine Werbung, kein Tracking und keine gespeicherten persönlichen Daten – nur anonyme Statistiken, die du ausschalten kannst.</p>
+    <p class="lede" lang="pt-BR">Esta política explica como o Black Hole Rumble trata os dados. Ela vale para o app para Android, o app para iPhone e a versão no navegador. Resumindo: sem conta, sem anúncios, sem rastreamento e sem guardar dados pessoais; só estatísticas anônimas, que você pode desligar.</p>
 
     <div class="verdict">
-      <p lang="it">In <strong>giocatore singolo</strong> il gioco funziona interamente sul tuo dispositivo e non ha bisogno di internet. Quando c'è la connessione, il telefono chiede al nostro server di <strong>verificare i progressi</strong> per il codice di salvataggio, mandando solo alcuni numeri (mai il tuo nome). Se scegli di giocare <strong>online</strong>, il telefono manda al server le poche informazioni necessarie alla partita. Tutto è descritto qui sotto: nulla viene salvato. Il gioco non contiene pubblicità né strumenti di analisi.</p>
-      <p lang="en">In <strong>single player</strong> the game runs entirely on your device and does not need the internet. When a connection is available, your phone asks our server to <strong>verify your progress</strong> for the save code, sending only a few numbers (never your name). If you choose to play <strong>online</strong>, your phone sends the server the few pieces of information a match needs. Everything is described below: nothing is saved. The game contains no ads or analytics.</p>
+      <p lang="it">In <strong>giocatore singolo</strong> il gioco funziona interamente sul tuo dispositivo e non ha bisogno di internet. Quando c'è la connessione, il telefono chiede al nostro server di <strong>verificare i progressi</strong> per il codice di salvataggio, mandando solo alcuni numeri (mai il tuo nome). Se scegli di giocare <strong>online</strong>, il telefono manda al server le poche informazioni necessarie alla partita. Il gioco manda anche <strong>statistiche anonime</strong>: soltanto numeri sommati per giorno, senza sapere chi gioca, che puoi spegnere. Tutto è descritto qui sotto. Il gioco non contiene pubblicità.</p>
+      <p lang="en">In <strong>single player</strong> the game runs entirely on your device and does not need the internet. When a connection is available, your phone asks our server to <strong>verify your progress</strong> for the save code, sending only a few numbers (never your name). If you choose to play <strong>online</strong>, your phone sends the server the few pieces of information a match needs. The game also sends <strong>anonymous statistics</strong>: only numbers summed per day, without knowing who plays, which you can turn off. Everything is described below. The game contains no ads.</p>
+      <p lang="fr">En <strong>solo</strong>, le jeu fonctionne entièrement sur ton appareil et n’a pas besoin d’internet. Quand une connexion est disponible, le téléphone demande à notre serveur de <strong>vérifier ta progression</strong> pour le code de sauvegarde, en n’envoyant que quelques chiffres (jamais ton nom). Si tu choisis de jouer <strong>en ligne</strong>, le téléphone envoie au serveur les quelques informations nécessaires à la partie. Le jeu envoie aussi des <strong>statistiques anonymes</strong> : uniquement des chiffres additionnés par jour, sans savoir qui joue, que tu peux désactiver. Tout est expliqué ci-dessous. Le jeu ne contient pas de publicité.</p>
+      <p lang="es">En <strong>un jugador</strong>, el juego funciona por completo en tu dispositivo y no necesita internet. Cuando hay conexión, el teléfono pide a nuestro servidor que <strong>verifique tu progreso</strong> para el código de guardado, enviando solo algunos números (nunca tu nombre). Si eliges jugar <strong>online</strong>, el teléfono envía al servidor la poca información que necesita la partida. El juego también envía <strong>estadísticas anónimas</strong>: solo números sumados por día, sin saber quién juega, que puedes desactivar. Todo se explica a continuación. El juego no tiene publicidad.</p>
+      <p lang="de">Im <strong>Einzelspielermodus</strong> läuft das Spiel komplett auf deinem Gerät und braucht kein Internet. Besteht eine Verbindung, bittet das Handy unseren Server, deinen <strong>Fortschritt zu prüfen</strong> (für den Speichercode), und schickt dabei nur einige Zahlen (nie deinen Namen). Spielst du <strong>online</strong>, schickt das Handy dem Server die wenigen Angaben, die eine Partie braucht. Außerdem schickt das Spiel <strong>anonyme Statistiken</strong>: nur Zahlen, pro Tag zusammengezählt, ohne zu wissen, wer spielt – du kannst sie ausschalten. Alles Weitere steht unten. Das Spiel enthält keine Werbung.</p>
+      <p lang="pt-BR">No <strong>modo solo</strong>, o jogo funciona inteiramente no seu dispositivo e não precisa de internet. Quando há conexão, o celular pede ao nosso servidor que <strong>verifique o seu progresso</strong> para o código de salvamento, enviando só alguns números (nunca o seu nome). Se você escolhe jogar <strong>online</strong>, o celular envia ao servidor as poucas informações de que a partida precisa. O jogo também envia <strong>estatísticas anônimas</strong>: só números somados por dia, sem saber quem joga, que você pode desligar. Está tudo explicado abaixo. O jogo não tem anúncios.</p>
     </div>
   </header>
 
   <section>
     <h2 lang="it">Chi siamo</h2>
     <h2 lang="en">Who we are</h2>
+    <h2 lang="fr">Qui sommes-nous</h2>
+    <h2 lang="es">Quiénes somos</h2>
+    <h2 lang="de">Wer wir sind</h2>
+    <h2 lang="pt-BR">Quem somos</h2>
     <p lang="it">Black Hole Rumble è sviluppato e pubblicato da Thomas Albertini. Per qualsiasi domanda su questa informativa puoi scrivere a <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
     <p lang="en">Black Hole Rumble is developed and published by Thomas Albertini. For any question about this policy, write to <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+    <p lang="fr">Black Hole Rumble est développé et publié par Thomas Albertini. Pour toute question sur cette politique, tu peux écrire à <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+    <p lang="es">Black Hole Rumble está desarrollado y publicado por Thomas Albertini. Si tienes cualquier pregunta sobre esta política, puedes escribir a <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+    <p lang="de">Black Hole Rumble wird von Thomas Albertini entwickelt und veröffentlicht. Bei Fragen zu dieser Datenschutzerklärung schreib an <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
+    <p lang="pt-BR">O Black Hole Rumble é desenvolvido e publicado por Thomas Albertini. Se tiver qualquer dúvida sobre esta política, escreva para <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>.</p>
   </section>
 
   <section>
     <h2 lang="it">Cosa resta sul tuo dispositivo</h2>
     <h2 lang="en">What stays on your device</h2>
+    <h2 lang="fr">Ce qui reste sur ton appareil</h2>
+    <h2 lang="es">Lo que se queda en tu dispositivo</h2>
+    <h2 lang="de">Was auf deinem Gerät bleibt</h2>
+    <h2 lang="pt-BR">O que fica no seu dispositivo</h2>
     <p lang="it">Per ricordare i tuoi progressi fra una partita e l'altra, il gioco salva alcune informazioni nella memoria dell'app, sul telefono. Non lasciano mai il dispositivo:</p>
     <p lang="en">To remember your progress between sessions, the game saves some information in the app's storage on your phone. It never leaves the device:</p>
+    <p lang="fr">Pour se souvenir de ta progression d’une partie à l’autre, le jeu enregistre quelques informations dans la mémoire de l’app, sur le téléphone. Elles ne quittent jamais l’appareil :</p>
+    <p lang="es">Para recordar tu progreso entre una partida y otra, el juego guarda algunos datos en la memoria de la app, en el teléfono. Nunca salen del dispositivo:</p>
+    <p lang="de">Damit dein Fortschritt von Partie zu Partie erhalten bleibt, speichert das Spiel einige Angaben im Speicher der App auf deinem Handy. Sie verlassen das Gerät nie:</p>
+    <p lang="pt-BR">Para lembrar o seu progresso de uma partida para outra, o jogo salva algumas informações na memória do app, no celular. Elas nunca saem do dispositivo:</p>
     <ul lang="it">
       <li>l'avanzamento di gioco: livello, massa accumulata, corpi divorati, vittorie, partite giocate</li>
       <li>i tuoi record e le statistiche delle partite migliori</li>
       <li>sfide giornaliere e settimanali, ricompense e token</li>
       <li>le personalizzazioni: stile del buco nero, colore, sfondo, avatar</li>
-      <li>le preferenze: lingua, volume di musica ed effetti, vibrazione</li>
+      <li>le preferenze: lingua, volume di musica ed effetti, vibrazione, promemoria, statistiche anonime</li>
       <li>il nome che scegli per te nel profilo</li>
       <li>il tuo codice amico e la lista dei codici amico che aggiungi</li>
+      <li>per le statistiche anonime: il giorno in cui hai aperto il gioco la prima volta, tre segni («già contato oggi, questa settimana, questo mese») e i numeri non ancora mandati (vedi sotto)</li>
     </ul>
     <ul lang="en">
       <li>game progress: level, accumulated mass, bodies devoured, wins, matches played</li>
       <li>your records and the statistics of your best matches</li>
       <li>daily and weekly challenges, rewards and tokens</li>
       <li>customisation: black hole style, colour, background, avatar</li>
-      <li>preferences: language, music and effects volume, vibration</li>
+      <li>preferences: language, music and effects volume, vibration, reminders, anonymous statistics</li>
       <li>the name you choose for your profile</li>
       <li>your friend code and the list of friend codes you add</li>
+      <li>for the anonymous statistics: the day you first opened the game, three marks (“already counted today, this week, this month”) and the numbers not yet sent (see below)</li>
+    </ul>
+    <ul lang="fr">
+      <li>l’avancement dans le jeu : niveau, masse accumulée, corps dévorés, victoires, parties jouées</li>
+      <li>tes records et les statistiques de tes meilleures parties</li>
+      <li>les défis quotidiens et hebdomadaires, les récompenses et les jetons</li>
+      <li>la personnalisation : style du trou noir, couleur, fond, avatar</li>
+      <li>les préférences : langue, volume de la musique et des effets, vibration, rappels, statistiques anonymes</li>
+      <li>le nom que tu choisis pour ton profil</li>
+      <li>ton code ami et la liste des codes amis que tu ajoutes</li>
+      <li>pour les statistiques anonymes : le jour où tu as ouvert le jeu pour la première fois, trois repères (« déjà compté aujourd’hui, cette semaine, ce mois-ci ») et les chiffres pas encore envoyés (voir plus bas)</li>
+    </ul>
+    <ul lang="es">
+      <li>el avance en el juego: nivel, masa acumulada, cuerpos devorados, victorias, partidas jugadas</li>
+      <li>tus récords y las estadísticas de tus mejores partidas</li>
+      <li>los desafíos diarios y semanales, las recompensas y los tokens</li>
+      <li>la personalización: estilo del agujero negro, color, fondo, avatar</li>
+      <li>las preferencias: idioma, volumen de la música y los efectos, vibración, avisos, estadísticas anónimas</li>
+      <li>el nombre que eliges para tu perfil</li>
+      <li>tu código de amigo y la lista de códigos de amigo que añades</li>
+      <li>para las estadísticas anónimas: el día en que abriste el juego por primera vez, tres marcas («ya contado hoy, esta semana, este mes») y los números aún no enviados (ver más abajo)</li>
+    </ul>
+    <ul lang="de">
+      <li>dein Spielfortschritt: Level, gesammelte Masse, verschlungene Himmelskörper, Siege, gespielte Partien</li>
+      <li>deine Rekorde und die Statistiken deiner besten Partien</li>
+      <li>tägliche und wöchentliche Aufgaben, Belohnungen und Token</li>
+      <li>deine Anpassungen: Stil des Schwarzen Lochs, Farbe, Hintergrund, Avatar</li>
+      <li>deine Einstellungen: Sprache, Lautstärke von Musik und Effekten, Vibration, Erinnerungen, anonyme Statistiken</li>
+      <li>der Name, den du dir im Profil gibst</li>
+      <li>dein Freundescode und die Liste der Freundescodes, die du hinzufügst</li>
+      <li>für die anonymen Statistiken: der Tag, an dem du das Spiel zum ersten Mal geöffnet hast, drei Merker („heute, diese Woche, diesen Monat schon gezählt“) und die noch nicht verschickten Zahlen (siehe unten)</li>
+    </ul>
+    <ul lang="pt-BR">
+      <li>o avanço no jogo: nível, massa acumulada, corpos devorados, vitórias, partidas jogadas</li>
+      <li>seus recordes e as estatísticas das suas melhores partidas</li>
+      <li>desafios diários e semanais, recompensas e tokens</li>
+      <li>as personalizações: estilo do buraco negro, cor, fundo, avatar</li>
+      <li>as preferências: idioma, volume da música e dos efeitos, vibração, lembretes, estatísticas anônimas</li>
+      <li>o nome que você escolhe para o seu perfil</li>
+      <li>o seu código de amigo e a lista de códigos de amigo que você adiciona</li>
+      <li>para as estatísticas anônimas: o dia em que você abriu o jogo pela primeira vez, três marcas (“já contado hoje, nesta semana, neste mês”) e os números ainda não enviados (veja abaixo)</li>
     </ul>
   </section>
 
   <section>
     <h2 lang="it">Il nome del profilo</h2>
     <h2 lang="en">Your profile name</h2>
+    <h2 lang="fr">Le nom du profil</h2>
+    <h2 lang="es">El nombre del perfil</h2>
+    <h2 lang="de">Der Profilname</h2>
+    <h2 lang="pt-BR">O nome do perfil</h2>
     <p lang="it">Il nome del profilo compare accanto al tuo buco nero durante la partita. Non è collegato a nessun account e non serve che sia il tuo nome vero: ti consigliamo anzi un soprannome. Nelle partite online <strong>è visibile agli altri giocatori</strong>; le parole volgari o offensive vengono bloccate. Puoi anche scegliere di non vedere i nomi degli altri. Gli avatar sono tutti disegnati dal gioco: non è possibile caricare immagini proprie.</p>
     <p lang="en">The profile name appears next to your black hole during a match. It is not linked to any account and does not need to be your real name: we actually recommend a nickname. In online matches <strong>it is visible to other players</strong>; offensive or vulgar words are blocked. You can also choose not to see other players' names. All avatars are drawn by the game: you cannot upload your own images.</p>
+    <p lang="fr">Le nom du profil s’affiche à côté de ton trou noir pendant la partie. Il n’est lié à aucun compte et n’a pas besoin d’être ton vrai nom : on te conseille même un pseudo. Dans les parties en ligne, <strong>les autres joueurs le voient</strong> ; les mots vulgaires ou insultants sont bloqués. Tu peux aussi choisir de ne pas voir les noms des autres. Tous les avatars sont dessinés par le jeu : impossible d’importer tes propres images.</p>
+    <p lang="es">El nombre del perfil aparece junto a tu agujero negro durante la partida. No está vinculado a ninguna cuenta y no hace falta que sea tu nombre real: de hecho, te recomendamos un apodo. En las partidas online <strong>lo ven los demás jugadores</strong>; las palabras vulgares u ofensivas se bloquean. También puedes elegir no ver los nombres de los demás. Todos los avatares los dibuja el juego: no se pueden subir imágenes propias.</p>
+    <p lang="de">Der Profilname erscheint während der Partie neben deinem Schwarzen Loch. Er ist mit keinem Konto verbunden und muss nicht dein echter Name sein – wir empfehlen sogar einen Spitznamen. In Online-Partien <strong>sehen ihn die anderen Spieler</strong>; vulgäre oder beleidigende Wörter werden blockiert. Du kannst auch einstellen, dass du die Namen der anderen nicht siehst. Alle Avatare zeichnet das Spiel selbst: Eigene Bilder lassen sich nicht hochladen.</p>
+    <p lang="pt-BR">O nome do perfil aparece ao lado do seu buraco negro durante a partida. Ele não está ligado a nenhuma conta e não precisa ser o seu nome verdadeiro: aliás, recomendamos um apelido. Nas partidas online <strong>os outros jogadores o veem</strong>; palavras vulgares ou ofensivas são bloqueadas. Você também pode escolher não ver os nomes dos outros. Todos os avatares são desenhados pelo jogo: não dá para enviar imagens próprias.</p>
   </section>
 
   <section>
     <h2 lang="it">Partite online e amici</h2>
     <h2 lang="en">Online matches and friends</h2>
+    <h2 lang="fr">Parties en ligne et amis</h2>
+    <h2 lang="es">Partidas online y amigos</h2>
+    <h2 lang="de">Online-Partien und Freunde</h2>
+    <h2 lang="pt-BR">Partidas online e amigos</h2>
     <p lang="it">Quando entri nella sezione Multigiocatore il telefono si collega al nostro server, che mette in contatto i giocatori e coordina le partite online. Ogni partita viene calcolata sul telefono di uno dei giocatori, scelto automaticamente; gli altri telefoni della stessa partita ne tengono una copia identica, da cui disegnano la partita, con cui la controllano e con cui possono prendere il suo posto se esce. Un telefono troppo lento per tenere la copia riceve la partita già pronta dal telefono di un altro giocatore. Il server passa i messaggi fra i telefoni. In quel momento il telefono gli manda:</p>
     <p lang="en">When you enter the Multiplayer section, your phone connects to our server, which puts players in touch and coordinates the online matches. Each match is computed on one of the players' phones, chosen automatically; the other phones in the same match keep an identical copy of it, which they draw the match from, use to check it and use to take over if that player leaves. A phone too slow to keep the copy receives the match ready-made from another player's phone. The server passes the messages between the phones. At that point your phone sends it:</p>
+    <p lang="fr">Quand tu entres dans la section Multijoueur, le téléphone se connecte à notre serveur, qui met les joueurs en relation et coordonne les parties en ligne. Chaque partie est calculée sur le téléphone de l’un des joueurs, choisi automatiquement ; les autres téléphones de la même partie en gardent une copie identique, qui leur sert à afficher la partie, à la vérifier et à prendre le relais si ce joueur s’en va. Un téléphone trop lent pour garder la copie reçoit la partie toute prête depuis le téléphone d’un autre joueur. Le serveur fait passer les messages entre les téléphones. À ce moment-là, le téléphone lui envoie :</p>
+    <p lang="es">Cuando entras en la sección Multijugador, el teléfono se conecta a nuestro servidor, que pone en contacto a los jugadores y coordina las partidas online. Cada partida se calcula en el teléfono de uno de los jugadores, elegido automáticamente; los demás teléfonos de la misma partida guardan una copia idéntica, con la que dibujan la partida, la comprueban y pueden tomar el relevo si ese jugador se va. Un teléfono demasiado lento para guardar la copia recibe la partida ya preparada desde el teléfono de otro jugador. El servidor pasa los mensajes entre los teléfonos. En ese momento el teléfono le envía:</p>
+    <p lang="de">Wenn du den Bereich Mehrspieler öffnest, verbindet sich dein Handy mit unserem Server, der die Spieler zusammenbringt und die Online-Partien koordiniert. Jede Partie wird auf dem Handy eines der Spieler berechnet, das automatisch ausgewählt wird; die anderen Handys derselben Partie halten eine identische Kopie, aus der sie die Partie zeichnen, mit der sie sie überprüfen und mit der sie übernehmen können, wenn dieser Spieler geht. Ein Handy, das für die Kopie zu langsam ist, bekommt die Partie fertig vom Handy eines anderen Spielers. Der Server leitet die Nachrichten zwischen den Handys weiter. Dabei schickt ihm dein Handy:</p>
+    <p lang="pt-BR">Quando você entra na seção Multijogador, o celular se conecta ao nosso servidor, que coloca os jogadores em contato e coordena as partidas online. Cada partida é calculada no celular de um dos jogadores, escolhido automaticamente; os outros celulares da mesma partida guardam uma cópia idêntica, com a qual desenham a partida, a conferem e podem assumir o lugar dele se ele sair. Um celular lento demais para guardar a cópia recebe a partida pronta do celular de outro jogador. O servidor passa as mensagens entre os celulares. Nesse momento, o celular envia a ele:</p>
     <ul lang="it">
       <li>il <strong>nome del profilo</strong>, il livello e l'aspetto del buco nero (colori, skin, avatar), che gli altri giocatori vedono, insieme all'ultima <strong>verifica dei progressi</strong> (vedi sotto): così gli altri vedono solo il livello, le skin e gli avatar sbloccati davvero</li>
       <li>un <strong>identificativo casuale</strong> creato dal gioco, che serve a farti rientrare nella partita se la connessione cade</li>
@@ -173,19 +262,67 @@
       <li>during a match, the <strong>game commands</strong>: the direction you move your black hole in, the power-ups you activate and how big your screen is (so you only receive what you can see)</li>
       <li>the <strong>speed of your connection</strong> and how fast your phone computes the game, measured by the game itself, to choose which phone computes the match</li>
     </ul>
+    <ul lang="fr">
+      <li>le <strong>nom du profil</strong>, le niveau et l’apparence du trou noir (couleurs, skin, avatar), que les autres joueurs voient, avec la dernière <strong>vérification de la progression</strong> (voir plus bas) : ainsi, les autres ne voient que le niveau, les skins et les avatars vraiment débloqués</li>
+      <li>un <strong>identifiant aléatoire</strong> créé par le jeu, qui sert à te faire revenir dans la partie si la connexion coupe</li>
+      <li>ton <strong>code ami</strong> et les codes des amis que tu as ajoutés, uniquement pour savoir lesquels sont connectés à ce moment-là</li>
+      <li>pendant la partie, les <strong>commandes de jeu</strong> : la direction dans laquelle tu déplaces ton trou noir, les bonus que tu actives et la taille de l’écran (pour ne t’envoyer que ce que tu vois)</li>
+      <li>la <strong>vitesse de la connexion</strong> et la vitesse à laquelle le téléphone calcule le jeu, mesurées par le jeu lui-même, pour choisir quel téléphone calcule la partie</li>
+    </ul>
+    <ul lang="es">
+      <li>el <strong>nombre del perfil</strong>, el nivel y el aspecto del agujero negro (colores, skin, avatar), que ven los demás jugadores, junto con la última <strong>verificación del progreso</strong> (ver más abajo): así los demás solo ven el nivel, las skins y los avatares que has desbloqueado de verdad</li>
+      <li>un <strong>identificador aleatorio</strong> creado por el juego, que sirve para que vuelvas a la partida si se cae la conexión</li>
+      <li>tu <strong>código de amigo</strong> y los códigos de los amigos que has añadido, solo para saber cuáles están conectados en ese momento</li>
+      <li>durante la partida, los <strong>controles del juego</strong>: la dirección en la que mueves tu agujero negro, los bonus que activas y el tamaño de la pantalla (para enviarte solo lo que ves)</li>
+      <li>la <strong>velocidad de la conexión</strong> y la velocidad con la que el teléfono calcula el juego, medidas por el propio juego, para elegir qué teléfono calcula la partida</li>
+    </ul>
+    <ul lang="de">
+      <li>deinen <strong>Profilnamen</strong>, dein Level und das Aussehen deines Schwarzen Lochs (Farben, Skin, Avatar), die die anderen Spieler sehen, zusammen mit der letzten <strong>Prüfung deines Fortschritts</strong> (siehe unten): So sehen die anderen nur das Level, die Skins und die Avatare, die du wirklich freigeschaltet hast</li>
+      <li>eine <strong>zufällige Kennung</strong>, die das Spiel erzeugt, damit du in die Partie zurückkommst, wenn die Verbindung abbricht</li>
+      <li>deinen <strong>Freundescode</strong> und die Codes der Freunde, die du hinzugefügt hast – nur um zu wissen, wer von ihnen gerade verbunden ist</li>
+      <li>während der Partie deine <strong>Spielsteuerung</strong>: die Richtung, in die du dein Schwarzes Loch bewegst, die Boni, die du aktivierst, und wie groß dein Bildschirm ist (damit du nur bekommst, was du siehst)</li>
+      <li>die <strong>Geschwindigkeit der Verbindung</strong> und wie schnell dein Handy das Spiel berechnet, vom Spiel selbst gemessen, um zu entscheiden, welches Handy die Partie berechnet</li>
+    </ul>
+    <ul lang="pt-BR">
+      <li>o <strong>nome do perfil</strong>, o nível e a aparência do buraco negro (cores, skin, avatar), que os outros jogadores veem, junto com a última <strong>verificação do progresso</strong> (veja abaixo): assim os outros só veem o nível, as skins e os avatares desbloqueados de verdade</li>
+      <li>um <strong>identificador aleatório</strong> criado pelo jogo, que serve para você voltar à partida se a conexão cair</li>
+      <li>o seu <strong>código de amigo</strong> e os códigos dos amigos que você adicionou, só para saber quais deles estão conectados naquele momento</li>
+      <li>durante a partida, os <strong>comandos do jogo</strong>: a direção em que você move o seu buraco negro, os bônus que você ativa e o tamanho da tela (para enviar só o que você vê)</li>
+      <li>a <strong>velocidade da conexão</strong> e a velocidade com que o celular calcula o jogo, medidas pelo próprio jogo, para escolher qual celular calcula a partida</li>
+    </ul>
     <p lang="it">I comandi di gioco e lo stato della partita passano, sempre attraverso il server, anche ai telefoni degli altri giocatori della stessa partita: servono soltanto a calcolarla e controllarla e non vengono salvati. Gli altri telefoni non ricevono il tuo indirizzo IP né il tuo identificativo.</p>
     <p lang="en">Game commands and the state of the match also reach, always through the server, the phones of the other players in the same match: they are used only to compute and check it and are never saved. The other phones do not receive your IP address or your identifier.</p>
-    <p lang="it">Il server <strong>non salva nulla</strong>: queste informazioni restano nella sua memoria solo finché sei collegato e spariscono pochi secondi dopo che esci dalla sezione Multigiocatore. Non esiste un database, un account o un profilo. La lista dei tuoi amici sta solo sul tuo telefono. La comunicazione è cifrata.</p>
-    <p lang="en">The server <strong>saves nothing</strong>: this information stays in its memory only while you are connected and disappears a few seconds after you leave the Multiplayer section. There is no database, account or profile. Your friends list is stored only on your phone. Communication is encrypted.</p>
-    <p lang="it">Il server gira su un computer che noleggiamo da DigitalOcean (digitalocean.com), in un suo centro dati nell'Unione Europea (oggi ad Amsterdam, nei Paesi Bassi); DigitalOcean agisce per nostro conto. Come accade con qualsiasi collegamento a internet, il server riceve l'indirizzo IP del tuo telefono per poter comunicare con lui: noi non lo registriamo e non lo salviamo, e il fornitore può trattarlo solo per la sicurezza della propria rete. Le versioni dell'app precedenti alla 1.8.0 usano ancora il vecchio server ospitato da Render (render.com), con le stesse regole, finché non vengono aggiornate. I dati sono trattati solo per fornirti la funzione online che hai scelto di usare.</p>
-    <p lang="en">The server runs on a machine we rent from DigitalOcean (digitalocean.com), in one of its data centres in the European Union (currently Amsterdam, the Netherlands); DigitalOcean acts on our behalf. As with any internet connection, the server receives your phone's IP address in order to communicate with it: we do not log or store it, and the provider may process it only for the security of its own network. App versions earlier than 1.8.0 still use the old server hosted by Render (render.com), under the same rules, until they are updated. Data is processed only to provide the online feature you chose to use.</p>
+    <p lang="fr">Les commandes de jeu et l’état de la partie parviennent aussi, toujours via le serveur, aux téléphones des autres joueurs de la même partie : ils servent uniquement à la calculer et à la vérifier, et ne sont pas enregistrés. Les autres téléphones ne reçoivent ni ton adresse IP ni ton identifiant.</p>
+    <p lang="es">Los controles del juego y el estado de la partida llegan también, siempre a través del servidor, a los teléfonos de los demás jugadores de la misma partida: solo sirven para calcularla y comprobarla, y no se guardan. Los demás teléfonos no reciben tu dirección IP ni tu identificador.</p>
+    <p lang="de">Spielsteuerung und Spielstand gehen, immer über den Server, auch an die Handys der anderen Spieler derselben Partie: Sie dienen nur dazu, die Partie zu berechnen und zu prüfen, und werden nicht gespeichert. Die anderen Handys bekommen weder deine IP-Adresse noch deine Kennung.</p>
+    <p lang="pt-BR">Os comandos do jogo e o estado da partida também chegam, sempre pelo servidor, aos celulares dos outros jogadores da mesma partida: servem só para calculá-la e conferi-la, e não são salvos. Os outros celulares não recebem o seu endereço IP nem o seu identificador.</p>
+    <p lang="it">Il server <strong>non salva nulla</strong>: queste informazioni restano nella sua memoria solo finché sei collegato e spariscono pochi secondi dopo che esci dalla sezione Multigiocatore. Non esiste un database, un account o un profilo. La lista dei tuoi amici sta solo sul tuo telefono. La comunicazione è cifrata. Il server conta soltanto quante partite online si giocano, con quante persone e per quanto tempo, senza sapere chi c'era (vedi «Statistiche anonime»).</p>
+    <p lang="en">The server <strong>saves nothing</strong>: this information stays in its memory only while you are connected and disappears a few seconds after you leave the Multiplayer section. There is no database, account or profile. Your friends list is stored only on your phone. Communication is encrypted. The server only counts how many online matches are played, with how many people and for how long, without knowing who was there (see “Anonymous statistics”).</p>
+    <p lang="fr">Le serveur <strong>n’enregistre rien</strong> : ces informations restent dans sa mémoire seulement tant que tu es connecté et disparaissent quelques secondes après ta sortie de la section Multijoueur. Il n’y a ni base de données, ni compte, ni profil. Ta liste d’amis reste uniquement sur ton téléphone. La communication est chiffrée. Le serveur compte seulement combien de parties en ligne sont jouées, avec combien de personnes et pendant combien de temps, sans savoir qui y était (voir « Statistiques anonymes »).</p>
+    <p lang="es">El servidor <strong>no guarda nada</strong>: esta información se queda en su memoria solo mientras estás conectado y desaparece pocos segundos después de que salgas de la sección Multijugador. No hay base de datos, ni cuenta, ni perfil. Tu lista de amigos está solo en tu teléfono. La comunicación está cifrada. El servidor solo cuenta cuántas partidas online se juegan, con cuántas personas y durante cuánto tiempo, sin saber quién estaba (ver «Estadísticas anónimas»).</p>
+    <p lang="de">Der Server <strong>speichert nichts</strong>: Diese Angaben bleiben nur in seinem Arbeitsspeicher, solange du verbunden bist, und verschwinden wenige Sekunden, nachdem du den Bereich Mehrspieler verlassen hast. Es gibt keine Datenbank, kein Konto und kein Profil. Deine Freundesliste liegt nur auf deinem Handy. Die Verbindung ist verschlüsselt. Der Server zählt nur, wie viele Online-Partien gespielt werden, mit wie vielen Leuten und wie lange, ohne zu wissen, wer dabei war (siehe „Anonyme Statistiken“).</p>
+    <p lang="pt-BR">O servidor <strong>não salva nada</strong>: essas informações ficam na memória dele só enquanto você está conectado e somem poucos segundos depois que você sai da seção Multijogador. Não existe banco de dados, conta ou perfil. A sua lista de amigos fica só no seu celular. A comunicação é criptografada. O servidor só conta quantas partidas online são jogadas, com quantas pessoas e por quanto tempo, sem saber quem estava lá (veja “Estatísticas anônimas”).</p>
+    <p lang="it">Il server gira su un computer che noleggiamo da DigitalOcean (digitalocean.com), in un suo centro dati nell'Unione Europea (oggi ad Amsterdam, nei Paesi Bassi); DigitalOcean agisce per nostro conto. Come accade con qualsiasi collegamento a internet, il server riceve l'indirizzo IP del tuo telefono per poter comunicare con lui: noi non lo registriamo e non lo salviamo, e il fornitore può trattarlo solo per la sicurezza della propria rete. I dati sono trattati solo per fornirti la funzione online che hai scelto di usare.</p>
+    <p lang="en">The server runs on a machine we rent from DigitalOcean (digitalocean.com), in one of its data centres in the European Union (currently Amsterdam, the Netherlands); DigitalOcean acts on our behalf. As with any internet connection, the server receives your phone's IP address in order to communicate with it: we do not log or store it, and the provider may process it only for the security of its own network. Data is processed only to provide the online feature you chose to use.</p>
+    <p lang="fr">Le serveur tourne sur une machine que nous louons à DigitalOcean (digitalocean.com), dans l’un de ses centres de données de l’Union européenne (actuellement à Amsterdam, aux Pays-Bas) ; DigitalOcean agit pour notre compte. Comme pour toute connexion à internet, le serveur reçoit l’adresse IP de ton téléphone pour pouvoir communiquer avec lui : nous ne la consignons pas et ne l’enregistrons pas, et le fournisseur ne peut la traiter que pour la sécurité de son propre réseau. Les données ne sont traitées que pour te fournir la fonction en ligne que tu as choisi d’utiliser.</p>
+    <p lang="es">El servidor funciona en un ordenador que alquilamos a DigitalOcean (digitalocean.com), en uno de sus centros de datos de la Unión Europea (hoy en Ámsterdam, Países Bajos); DigitalOcean actúa por cuenta nuestra. Como en cualquier conexión a internet, el servidor recibe la dirección IP de tu teléfono para poder comunicarse con él: nosotros no la registramos ni la guardamos, y el proveedor solo puede tratarla para la seguridad de su propia red. Los datos se tratan solo para ofrecerte la función online que has elegido usar.</p>
+    <p lang="de">Der Server läuft auf einem Rechner, den wir bei DigitalOcean (digitalocean.com) mieten, in einem seiner Rechenzentren in der Europäischen Union (derzeit in Amsterdam, Niederlande); DigitalOcean handelt in unserem Auftrag. Wie bei jeder Internetverbindung erhält der Server die IP-Adresse deines Handys, um mit ihm kommunizieren zu können: Wir protokollieren und speichern sie nicht, und der Anbieter darf sie nur für die Sicherheit seines eigenen Netzes verarbeiten. Die Daten werden nur verarbeitet, um dir die Online-Funktion bereitzustellen, die du nutzen möchtest.</p>
+    <p lang="pt-BR">O servidor roda em um computador que alugamos da DigitalOcean (digitalocean.com), em um dos seus data centers na União Europeia (hoje em Amsterdã, nos Países Baixos); a DigitalOcean atua em nosso nome. Como em qualquer conexão com a internet, o servidor recebe o endereço IP do seu celular para poder se comunicar com ele: nós não o registramos nem o salvamos, e o fornecedor só pode tratá-lo para a segurança da própria rede. Os dados são tratados só para oferecer a você a função online que você escolheu usar.</p>
   </section>
 
   <section>
     <h2 lang="it">Verifica del codice di salvataggio</h2>
     <h2 lang="en">Save code verification</h2>
+    <h2 lang="fr">Vérification du code de sauvegarde</h2>
+    <h2 lang="es">Verificación del código de guardado</h2>
+    <h2 lang="de">Prüfung des Speichercodes</h2>
+    <h2 lang="pt-BR">Verificação do código de salvamento</h2>
     <p lang="it">Perché nessuno possa inventare o modificare un codice di salvataggio, il codice porta la firma del nostro server. Quando i tuoi progressi cambiano e c'è la connessione, oppure quando generi un codice, il telefono manda al server soltanto:</p>
     <p lang="en">So that nobody can invent or edit a save code, the code carries our server's signature. When your progress changes and a connection is available, or when you generate a code, your phone sends the server only:</p>
+    <p lang="fr">Pour que personne ne puisse inventer ou modifier un code de sauvegarde, le code porte la signature de notre serveur. Quand ta progression change et qu’une connexion est disponible, ou quand tu génères un code, le téléphone envoie au serveur seulement :</p>
+    <p lang="es">Para que nadie pueda inventar o modificar un código de guardado, el código lleva la firma de nuestro servidor. Cuando tu progreso cambia y hay conexión, o cuando generas un código, el teléfono envía al servidor solamente:</p>
+    <p lang="de">Damit niemand einen Speichercode erfinden oder verändern kann, trägt der Code die Signatur unseres Servers. Wenn sich dein Fortschritt ändert und eine Verbindung besteht, oder wenn du einen Code erstellst, schickt dein Handy dem Server nur:</p>
+    <p lang="pt-BR">Para que ninguém possa inventar ou alterar um código de salvamento, o código leva a assinatura do nosso servidor. Quando o seu progresso muda e há conexão, ou quando você gera um código, o celular envia ao servidor somente:</p>
     <ul lang="it">
       <li>alcuni numeri dei progressi: punti esperienza, token guadagnati e spesi, stelle della Campagna, sfere degli eventi</li>
       <li>un'impronta del salvataggio (un codice calcolato dai dati, da cui i dati non si possono ricostruire)</li>
@@ -196,75 +333,302 @@
       <li>a fingerprint of the save (a code computed from the data, from which the data cannot be rebuilt)</li>
       <li>the previous verification, which the server itself had signed</li>
     </ul>
+    <ul lang="fr">
+      <li>quelques chiffres de ta progression : points d’expérience, jetons gagnés et dépensés, étoiles de la Campagne, sphères des événements</li>
+      <li>une empreinte de la sauvegarde (un code calculé à partir des données, qui ne permet pas de reconstruire les données)</li>
+      <li>la vérification précédente, que le serveur lui-même avait signée</li>
+    </ul>
+    <ul lang="es">
+      <li>algunos números del progreso: puntos de experiencia, tokens ganados y gastados, estrellas de la Campaña, esferas de los eventos</li>
+      <li>una huella del guardado (un código calculado a partir de los datos, con el que no se pueden reconstruir los datos)</li>
+      <li>la verificación anterior, que el propio servidor había firmado</li>
+    </ul>
+    <ul lang="de">
+      <li>einige Zahlen deines Fortschritts: Erfahrungspunkte, verdiente und ausgegebene Token, Sterne der Kampagne, Sphären der Events</li>
+      <li>einen Fingerabdruck des Spielstands (ein aus den Daten berechneter Code, aus dem sich die Daten nicht wiederherstellen lassen)</li>
+      <li>die vorherige Prüfung, die der Server selbst signiert hatte</li>
+    </ul>
+    <ul lang="pt-BR">
+      <li>alguns números do progresso: pontos de experiência, tokens ganhos e gastos, estrelas da Campanha, esferas dos eventos</li>
+      <li>uma impressão digital do salvamento (um código calculado a partir dos dados, com o qual não dá para reconstruir os dados)</li>
+      <li>a verificação anterior, que o próprio servidor tinha assinado</li>
+    </ul>
     <p lang="it">Il server controlla che i progressi siano cresciuti in un modo possibile nel tempo e risponde con la firma. Non riceve il tuo nome né altri dati del telefono e <strong>non salva nulla</strong>: la storia delle verifiche resta dentro il codice, sul tuo telefono. Il ripristino da codice funziona anche senza internet.</p>
     <p lang="en">The server checks that your progress has grown in a possible way over time and replies with the signature. It does not receive your name or any other data from your phone and <strong>saves nothing</strong>: the history of verifications stays inside the code, on your phone. Restoring from a code works even without the internet.</p>
+    <p lang="fr">Le serveur vérifie que ta progression a augmenté de façon plausible dans le temps et répond avec la signature. Il ne reçoit ni ton nom ni d’autres données du téléphone et <strong>n’enregistre rien</strong> : l’historique des vérifications reste dans le code, sur ton téléphone. La restauration depuis un code fonctionne aussi sans internet.</p>
+    <p lang="es">El servidor comprueba que tu progreso haya crecido de forma posible con el tiempo y responde con la firma. No recibe tu nombre ni otros datos del teléfono y <strong>no guarda nada</strong>: el historial de verificaciones se queda dentro del código, en tu teléfono. La restauración con un código funciona también sin internet.</p>
+    <p lang="de">Der Server prüft, ob dein Fortschritt im Lauf der Zeit auf mögliche Weise gewachsen ist, und antwortet mit der Signatur. Er bekommt weder deinen Namen noch andere Daten deines Handys und <strong>speichert nichts</strong>: Der Verlauf der Prüfungen steckt im Code, auf deinem Handy. Die Wiederherstellung mit einem Code klappt auch ohne Internet.</p>
+    <p lang="pt-BR">O servidor confere se o seu progresso cresceu de um jeito possível ao longo do tempo e responde com a assinatura. Ele não recebe o seu nome nem outros dados do celular e <strong>não salva nada</strong>: o histórico das verificações fica dentro do código, no seu celular. A restauração com código funciona até sem internet.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">Statistiche anonime</h2>
+    <h2 lang="en">Anonymous statistics</h2>
+    <h2 lang="fr">Statistiques anonymes</h2>
+    <h2 lang="es">Estadísticas anónimas</h2>
+    <h2 lang="de">Anonyme Statistiken</h2>
+    <h2 lang="pt-BR">Estatísticas anônimas</h2>
+    <p lang="it">Per capire come si gioca (quali modalità, quanto durano le partite, dove ci si ferma nella Campagna) e per poter dire a uno sponsor quante volte compare il suo marchio, il gioco (nelle app e nel browser) manda al nostro server dei <strong>numeri anonimi</strong>. Un messaggio contiene soltanto:</p>
+    <p lang="en">To understand how the game is played (which modes, how long matches last, where players stop in the Campaign) and to be able to tell a sponsor how often their brand appears, the game (in the apps and in the browser) sends our server <strong>anonymous numbers</strong>. A message contains only:</p>
+    <p lang="fr">Pour comprendre comment on joue (quels modes, combien de temps durent les parties, où l’on s’arrête dans la Campagne) et pour pouvoir dire à un sponsor combien de fois sa marque apparaît, le jeu (dans les apps et dans le navigateur) envoie à notre serveur des <strong>chiffres anonymes</strong>. Un message contient seulement :</p>
+    <p lang="es">Para entender cómo se juega (qué modos, cuánto duran las partidas, dónde se queda la gente en la Campaña) y para poder decirle a un patrocinador cuántas veces aparece su marca, el juego (en las apps y en el navegador) envía a nuestro servidor <strong>números anónimos</strong>. Un mensaje contiene solamente:</p>
+    <p lang="de">Um zu verstehen, wie gespielt wird (welche Modi, wie lange Partien dauern, wo man in der Kampagne hängen bleibt), und um einem Sponsor sagen zu können, wie oft seine Marke erscheint, schickt das Spiel (in den Apps und im Browser) unserem Server <strong>anonyme Zahlen</strong>. Eine Nachricht enthält nur:</p>
+    <p lang="pt-BR">Para entender como se joga (quais modos, quanto tempo duram as partidas, onde as pessoas param na Campanha) e para poder dizer a um patrocinador quantas vezes a marca dele aparece, o jogo (nos apps e no navegador) envia ao nosso servidor <strong>números anônimos</strong>. Uma mensagem contém somente:</p>
+    <ul lang="it">
+      <li>quante partite sono finite, in quale modalità, da soli o online, e quanto sono durate</li>
+      <li>quali capitoli della Campagna sono stati iniziati, quante Battle sono state raggiunte e quali pianeti divorati</li>
+      <li>quante volte è comparso lo sponsor della partita, per quanti secondi era sullo schermo, quante volte è stata vista la sua card (nella sala d'attesa e a fine partita), quante sfere sponsor sono state raccolte, e quante volte è stato visto o toccato «Il tuo brand qui»</li>
+      <li>se il dispositivo ha aperto il gioco per la prima volta oggi, questa settimana o questo mese, se è la prima apertura in assoluto, e se la prima apertura era 1, 7 o 30 giorni fa</li>
+      <li>la piattaforma (app Android, app per iPhone, sito), la lingua del gioco e il <strong>paese</strong> delle impostazioni della lingua del dispositivo (per esempio «Italia» da «italiano (Italia)»); se le impostazioni non indicano un paese, «Italia» se il gioco è in italiano, «Brasile» se è in portoghese, altrimenti «sconosciuto». Non è la tua posizione, che il gioco non conosce</li>
+    </ul>
+    <ul lang="en">
+      <li>how many matches ended, in which mode, solo or online, and how long they lasted</li>
+      <li>which Campaign chapters were started, how many Battles were reached and which planets were devoured</li>
+      <li>how many times the match sponsor appeared, for how many seconds it was on screen, how many times its card was seen (in the lobby and at the end of a match), how many sponsor orbs were collected, and how many times “Your brand here” was seen or tapped</li>
+      <li>whether the device opened the game for the first time today, this week or this month, whether it is the very first time, and whether the first time was 1, 7 or 30 days ago</li>
+      <li>the platform (Android app, iPhone app, website), the game language and the <strong>country</strong> of the device's language settings (for example “Italy” from “Italian (Italy)”); if the settings name no country, “Italy” when the game is in Italian, “Brazil” when it is in Portuguese, otherwise “unknown”. It is not your location, which the game does not know</li>
+    </ul>
+    <ul lang="fr">
+      <li>combien de parties se sont terminées, dans quel mode, en solo ou en ligne, et combien de temps elles ont duré</li>
+      <li>quels chapitres de la Campagne ont été commencés, combien de Battles ont été atteintes et quelles planètes dévorées</li>
+      <li>combien de fois le sponsor de la partie est apparu, pendant combien de secondes il était à l’écran, combien de fois sa carte a été vue (dans la salle d’attente et en fin de partie), combien de sphères sponsor ont été ramassées, et combien de fois « Ta marque ici » a été vu ou touché</li>
+      <li>si l’appareil a ouvert le jeu pour la première fois aujourd’hui, cette semaine ou ce mois-ci, si c’est la toute première ouverture, et si la première ouverture remonte à 1, 7 ou 30 jours</li>
+      <li>la plateforme (app Android, app iPhone, site), la langue du jeu et le <strong>pays</strong> des réglages de langue de l’appareil (par exemple « France » pour « français (France) ») ; si les réglages n’indiquent aucun pays : « Italie » si le jeu est en italien, « Brésil » s’il est en portugais, sinon « inconnu ». Ce n’est pas ta position, que le jeu ne connaît pas</li>
+    </ul>
+    <ul lang="es">
+      <li>cuántas partidas han terminado, en qué modo, en solitario u online, y cuánto han durado</li>
+      <li>qué capítulos de la Campaña se han empezado, cuántas Battles se han alcanzado y qué planetas se han devorado</li>
+      <li>cuántas veces ha aparecido el patrocinador de la partida, cuántos segundos ha estado en pantalla, cuántas veces se ha visto su tarjeta (en la sala de espera y al final de la partida), cuántas esferas de patrocinador se han recogido y cuántas veces se ha visto o tocado «Tu marca aquí»</li>
+      <li>si el dispositivo ha abierto el juego por primera vez hoy, esta semana o este mes, si es la primera vez de todas, y si la primera vez fue hace 1, 7 o 30 días</li>
+      <li>la plataforma (app de Android, app de iPhone, web), el idioma del juego y el <strong>país</strong> de los ajustes de idioma del dispositivo (por ejemplo «España» de «español (España)»); si los ajustes no indican ningún país, «Italia» si el juego está en italiano, «Brasil» si está en portugués y, si no, «desconocido». No es tu ubicación, que el juego no conoce</li>
+    </ul>
+    <ul lang="de">
+      <li>wie viele Partien zu Ende gegangen sind, in welchem Modus, allein oder online, und wie lange sie gedauert haben</li>
+      <li>welche Kapitel der Kampagne begonnen, wie viele Battles erreicht und welche Planeten verschlungen wurden</li>
+      <li>wie oft der Sponsor der Partie erschienen ist, wie viele Sekunden er auf dem Bildschirm war, wie oft seine Karte gesehen wurde (im Warteraum und am Ende der Partie), wie viele Sponsor-Sphären eingesammelt wurden und wie oft „Deine Marke hier“ gesehen oder angetippt wurde</li>
+      <li>ob das Gerät das Spiel heute, diese Woche oder diesen Monat zum ersten Mal geöffnet hat, ob es das allererste Mal ist und ob das erste Mal 1, 7 oder 30 Tage her ist</li>
+      <li>die Plattform (Android-App, iPhone-App, Website), die Sprache des Spiels und das <strong>Land</strong> aus den Spracheinstellungen des Geräts (zum Beispiel „Deutschland“ aus „Deutsch (Deutschland)“); nennen die Einstellungen kein Land, „Italien“, wenn das Spiel auf Italienisch läuft, „Brasilien“ bei Portugiesisch, sonst „unbekannt“. Das ist nicht dein Standort, den das Spiel nicht kennt</li>
+    </ul>
+    <ul lang="pt-BR">
+      <li>quantas partidas terminaram, em qual modo, sozinho ou online, e quanto tempo duraram</li>
+      <li>quais capítulos da Campanha foram iniciados, quantas Battles foram alcançadas e quais planetas foram devorados</li>
+      <li>quantas vezes o patrocinador da partida apareceu, por quantos segundos ficou na tela, quantas vezes o card dele foi visto (na sala de espera e no fim da partida), quantas esferas de patrocinador foram coletadas e quantas vezes “Sua marca aqui” foi visto ou tocado</li>
+      <li>se o dispositivo abriu o jogo pela primeira vez hoje, nesta semana ou neste mês, se é a primeira vez de todas e se a primeira vez foi há 1, 7 ou 30 dias</li>
+      <li>a plataforma (app para Android, app para iPhone, site), o idioma do jogo e o <strong>país</strong> das configurações de idioma do dispositivo (por exemplo “Brasil” de “português (Brasil)”); se as configurações não indicarem um país, “Itália” se o jogo estiver em italiano, “Brasil” se estiver em português e, se não, “desconhecido”. Não é a sua localização, que o jogo não conhece</li>
+    </ul>
+    <p lang="it">Non contiene <strong>nessun nome, nessun identificativo, nessun codice di salvataggio</strong> e nulla che permetta di capire chi gioca o di collegare due messaggi allo stesso dispositivo. Il server somma i numeri in <strong>totali giornalieri</strong> (per esempio «812 partite di Sopravvivenza da soli, di cui 600 su Android») e non salva l'indirizzo IP, che usa solo per un minuto per limitare le richieste. I totali giornalieri restano nel nostro archivio privato per 24 mesi, poi restano solo quelli mensili. Agli sponsor diamo soltanto totali (per esempio quante volte è comparso il loro marchio in un mese, e in quali paesi, se in quel paese sono almeno 20), mai dati di singoli giocatori.</p>
+    <p lang="en">It contains <strong>no name, no identifier, no save code</strong> and nothing that would reveal who plays or link two messages to the same device. The server adds the numbers up into <strong>daily totals</strong> (for example “812 solo Survival matches, 600 on Android”) and does not save the IP address, which it uses for one minute only to limit requests. Daily totals stay in our private archive for 24 months, after which only the monthly totals remain. We give sponsors only totals (for example how many times their brand appeared in a month, and in which countries, if there are at least 20 in that country), never data about individual players.</p>
+    <p lang="fr">Il ne contient <strong>aucun nom, aucun identifiant, aucun code de sauvegarde</strong>, ni rien qui permette de savoir qui joue ou de relier deux messages au même appareil. Le serveur additionne les chiffres en <strong>totaux journaliers</strong> (par exemple « 812 parties de Survie en solo, dont 600 sur Android ») et n’enregistre pas l’adresse IP, qu’il n’utilise qu’une minute pour limiter les requêtes. Les totaux journaliers restent 24 mois dans nos archives privées ; ensuite, seuls les totaux mensuels sont conservés. Aux sponsors, nous ne donnons que des totaux (par exemple combien de fois leur marque est apparue en un mois, et dans quels pays, s’il y en a au moins 20 dans ce pays), jamais de données sur un joueur en particulier.</p>
+    <p lang="es">No contiene <strong>ningún nombre, ningún identificador, ningún código de guardado</strong> ni nada que permita saber quién juega o relacionar dos mensajes con el mismo dispositivo. El servidor suma los números en <strong>totales diarios</strong> (por ejemplo «812 partidas de Supervivencia en solitario, 600 de ellas en Android») y no guarda la dirección IP, que usa solo durante un minuto para limitar las peticiones. Los totales diarios se quedan en nuestro archivo privado durante 24 meses; después solo quedan los mensuales. A los patrocinadores solo les damos totales (por ejemplo cuántas veces ha aparecido su marca en un mes, y en qué países, si en ese país son al menos 20), nunca datos de jugadores concretos.</p>
+    <p lang="de">Sie enthält <strong>keinen Namen, keine Kennung, keinen Speichercode</strong> und nichts, woraus man erkennen könnte, wer spielt, oder womit sich zwei Nachrichten demselben Gerät zuordnen ließen. Der Server zählt die Zahlen zu <strong>Tagessummen</strong> zusammen (zum Beispiel „812 Partien im Modus Überleben allein, 600 davon auf Android“) und speichert die IP-Adresse nicht; er nutzt sie nur eine Minute lang, um die Anfragen zu begrenzen. Die Tagessummen bleiben 24 Monate in unserem privaten Archiv, danach nur noch die Monatssummen. Sponsoren bekommen von uns nur Summen (zum Beispiel wie oft ihre Marke in einem Monat erschienen ist, und in welchen Ländern, sofern es in dem Land mindestens 20 sind), nie Daten einzelner Spieler.</p>
+    <p lang="pt-BR">Ela não contém <strong>nenhum nome, nenhum identificador, nenhum código de salvamento</strong> nem nada que permita saber quem joga ou ligar duas mensagens ao mesmo dispositivo. O servidor soma os números em <strong>totais diários</strong> (por exemplo “812 partidas de Sobrevivência no modo solo, 600 delas no Android”) e não salva o endereço IP, que usa só por um minuto para limitar os pedidos. Os totais diários ficam no nosso arquivo privado por 24 meses; depois, ficam só os mensais. Aos patrocinadores damos apenas totais (por exemplo quantas vezes a marca deles apareceu em um mês, e em quais países, se naquele país forem pelo menos 20), nunca dados de jogadores individuais.</p>
+    <p lang="it">Sul dispositivo restano solo i tre segni, il giorno della prima apertura e i numeri non ancora mandati (senza internet aspettano al massimo 7 giorni, poi si buttano). Puoi <strong>spegnere le statistiche</strong> quando vuoi in Personalizza → Privacy: da quel momento non viene mandato più nulla e i numeri in attesa si cancellano.</p>
+    <p lang="en">Only the three marks, the day of the first opening and the numbers not yet sent stay on the device (without internet they wait at most 7 days, then they are discarded). You can <strong>turn the statistics off</strong> at any time in Customise → Privacy: from then on nothing more is sent and the waiting numbers are deleted.</p>
+    <p lang="fr">Sur l’appareil ne restent que les trois repères, le jour de la première ouverture et les chiffres pas encore envoyés (sans internet, ils attendent au maximum 7 jours, puis sont supprimés). Tu peux <strong>désactiver les statistiques</strong> à tout moment dans Personnaliser → Confidentialité : à partir de là, plus rien n’est envoyé et les chiffres en attente sont effacés.</p>
+    <p lang="es">En el dispositivo solo quedan las tres marcas, el día de la primera apertura y los números aún no enviados (sin internet esperan como máximo 7 días y luego se descartan). Puedes <strong>desactivar las estadísticas</strong> cuando quieras en Personalizar → Privacidad: desde ese momento no se envía nada más y los números pendientes se borran.</p>
+    <p lang="de">Auf dem Gerät bleiben nur die drei Merker, der Tag der ersten Öffnung und die noch nicht verschickten Zahlen (ohne Internet warten sie höchstens 7 Tage und werden dann verworfen). Du kannst die <strong>Statistiken jederzeit ausschalten</strong>, unter Anpassen → Datenschutz: Ab dann wird nichts mehr verschickt, und die wartenden Zahlen werden gelöscht.</p>
+    <p lang="pt-BR">No dispositivo ficam só as três marcas, o dia da primeira abertura e os números ainda não enviados (sem internet eles esperam no máximo 7 dias e depois são descartados). Você pode <strong>desligar as estatísticas</strong> quando quiser em Personalizar → Privacidade: a partir daí nada mais é enviado e os números pendentes são apagados.</p>
   </section>
 
   <section>
     <h2 lang="it">Cosa il gioco chiede al telefono</h2>
     <h2 lang="en">What the game asks of your phone</h2>
-    <p lang="it">La <strong>vibrazione</strong>, per il breve ritorno tattile quando tocchi un pulsante (puoi disattivarla in Personalizza), e l'<strong>accesso a internet</strong>, usato dal Multigiocatore e dalla verifica del codice di salvataggio. Il gioco non accede a foto, fotocamera, contatti, posizione, microfono o file del telefono. Unica eccezione su iPhone: se dopo una partita scegli di condividere il risultato e tocchi «Salva immagine», iOS ti chiede il permesso di aggiungere quell'immagine a Foto; il gioco non legge le tue foto.</p>
-    <p lang="en"><strong>Vibration</strong>, for the short tactile response when you tap a button (you can turn it off in Customise), and <strong>internet access</strong>, used by Multiplayer and by save code verification. The game does not access your photos, camera, contacts, location, microphone or files. The only exception, on iPhone: if after a match you share your result and tap “Save Image”, iOS asks your permission to add that image to Photos; the game never reads your photos.</p>
+    <h2 lang="fr">Ce que le jeu demande au téléphone</h2>
+    <h2 lang="es">Lo que el juego pide al teléfono</h2>
+    <h2 lang="de">Was das Spiel von deinem Handy braucht</h2>
+    <h2 lang="pt-BR">O que o jogo pede ao celular</h2>
+    <p lang="it">La <strong>vibrazione</strong>, per il breve ritorno tattile quando tocchi un pulsante (puoi disattivarla in Personalizza), l'<strong>accesso a internet</strong>, usato dal Multigiocatore, dalla verifica del codice di salvataggio e dalle statistiche anonime, e le <strong>notifiche</strong>, solo se rispondi di sì quando il gioco te lo chiede: promemoria programmati dal telefono stesso (la ricompensa del giorno, le sfide nuove, un pianeta lasciato a metà), al massimo uno al giorno, che non passano dal nostro server e che puoi spegnere in Personalizza. Il gioco non accede a foto, fotocamera, contatti, posizione, microfono o file del telefono. Unica eccezione su iPhone: se dopo una partita scegli di condividere il risultato e tocchi «Salva immagine», iOS ti chiede il permesso di aggiungere quell'immagine a Foto; il gioco non legge le tue foto.</p>
+    <p lang="en"><strong>Vibration</strong>, for the short tactile response when you tap a button (you can turn it off in Customise), <strong>internet access</strong>, used by Multiplayer, by save code verification and by the anonymous statistics, and <strong>notifications</strong>, only if you say yes when the game asks: reminders scheduled by the phone itself (the daily reward, new challenges, a planet left halfway), at most one a day, which do not go through our server and which you can turn off in Customise. The game does not access your photos, camera, contacts, location, microphone or files. The only exception, on iPhone: if after a match you share your result and tap “Save Image”, iOS asks your permission to add that image to Photos; the game never reads your photos.</p>
+    <p lang="fr">La <strong>vibration</strong>, pour le petit retour tactile quand tu touches un bouton (tu peux la désactiver dans Personnaliser), l’<strong>accès à internet</strong>, utilisé par le Multijoueur, par la vérification du code de sauvegarde et par les statistiques anonymes, et les <strong>notifications</strong>, seulement si tu dis oui quand le jeu te le demande : des rappels programmés par le téléphone lui-même (la récompense du jour, les nouveaux défis, une planète laissée à moitié), un par jour au maximum, qui ne passent pas par notre serveur et que tu peux désactiver dans Personnaliser. Le jeu n’accède ni aux photos, ni à l’appareil photo, ni aux contacts, ni à la position, ni au micro, ni aux fichiers du téléphone. Seule exception, sur iPhone : si après une partie tu choisis de partager ton résultat et que tu touches « Enregistrer l’image », iOS te demande l’autorisation d’ajouter cette image à Photos ; le jeu ne lit pas tes photos.</p>
+    <p lang="es">La <strong>vibración</strong>, para la breve respuesta táctil cuando tocas un botón (puedes desactivarla en Personalizar), el <strong>acceso a internet</strong>, que usan el Multijugador, la verificación del código de guardado y las estadísticas anónimas, y las <strong>notificaciones</strong>, solo si dices que sí cuando el juego te lo pregunta: avisos programados por el propio teléfono (la recompensa del día, los desafíos nuevos, un planeta a medias), como mucho uno al día, que no pasan por nuestro servidor y que puedes desactivar en Personalizar. El juego no accede a las fotos, la cámara, los contactos, la ubicación, el micrófono ni los archivos del teléfono. Única excepción, en iPhone: si después de una partida decides compartir el resultado y tocas «Guardar imagen», iOS te pide permiso para añadir esa imagen a Fotos; el juego no lee tus fotos.</p>
+    <p lang="de">Die <strong>Vibration</strong> für die kurze haptische Rückmeldung, wenn du einen Knopf antippst (du kannst sie unter Anpassen ausschalten), den <strong>Internetzugang</strong>, den Mehrspieler, die Prüfung des Speichercodes und die anonymen Statistiken nutzen, und <strong>Mitteilungen</strong>, nur wenn du Ja sagst, wenn das Spiel fragt: Erinnerungen, die das Handy selbst plant (die Tagesbelohnung, neue Aufgaben, ein halb geschaffter Planet), höchstens eine am Tag, die nicht über unseren Server laufen und die du unter Anpassen ausschalten kannst. Das Spiel greift nicht auf Fotos, Kamera, Kontakte, Standort, Mikrofon oder Dateien des Handys zu. Einzige Ausnahme auf dem iPhone: Wenn du nach einer Partie dein Ergebnis teilst und auf „Bild sichern“ tippst, fragt iOS dich um Erlaubnis, dieses Bild zu Fotos hinzuzufügen; das Spiel liest deine Fotos nicht.</p>
+    <p lang="pt-BR">A <strong>vibração</strong>, para a leve resposta tátil quando você toca um botão (dá para desativar em Personalizar), o <strong>acesso à internet</strong>, usado pelo Multijogador, pela verificação do código de salvamento e pelas estatísticas anônimas, e as <strong>notificações</strong>, só se você disser sim quando o jogo perguntar: lembretes programados pelo próprio celular (a recompensa do dia, os desafios novos, um planeta deixado pela metade), no máximo um por dia, que não passam pelo nosso servidor e que você pode desligar em Personalizar. O jogo não acessa fotos, câmera, contatos, localização, microfone ou arquivos do celular. Única exceção, no iPhone: se depois de uma partida você escolher compartilhar o resultado e tocar em “Salvar Imagem”, o iOS pede permissão para adicionar essa imagem ao Fotos; o jogo não lê as suas fotos.</p>
   </section>
 
   <section>
     <h2 lang="it">Cosa il gioco non fa</h2>
     <h2 lang="en">What the game does not do</h2>
+    <h2 lang="fr">Ce que le jeu ne fait pas</h2>
+    <h2 lang="es">Lo que el juego no hace</h2>
+    <h2 lang="de">Was das Spiel nicht tut</h2>
+    <h2 lang="pt-BR">O que o jogo não faz</h2>
     <ul lang="it">
       <li>Non conserva dati personali su nessun server</li>
       <li>Non richiede la creazione di un account, l'email o l'età</li>
       <li>Non contiene pubblicità</li>
-      <li>Non usa strumenti di analisi o di tracciamento</li>
-      <li>Non condivide informazioni con terze parti</li>
+      <li>Non usa strumenti di analisi di altre aziende né di tracciamento: le uniche statistiche sono i nostri numeri anonimi</li>
+      <li>Non condivide dati personali con terze parti (agli sponsor vanno solo totali anonimi)</li>
       <li>Non usa cookie né identificatori pubblicitari</li>
-      <li>Non ha bisogno di internet per giocare da solo (serve solo per generare il codice di salvataggio)</li>
+      <li>Non ha bisogno di internet per giocare da solo: quando c'è la connessione, la usa per il codice di salvataggio e, se attive, per le statistiche anonime</li>
     </ul>
     <ul lang="en">
       <li>It does not store personal data on any server</li>
       <li>It does not require an account, an email address or your age</li>
       <li>It contains no advertising</li>
-      <li>It uses no analytics or tracking tools</li>
-      <li>It does not share information with third parties</li>
+      <li>It uses no third-party analytics and no tracking tools: the only statistics are our own anonymous numbers</li>
+      <li>It does not share personal data with third parties (sponsors only receive anonymous totals)</li>
       <li>It uses no cookies or advertising identifiers</li>
-      <li>It does not need the internet to play solo (only to generate the save code)</li>
+      <li>It does not need the internet to play solo: when a connection is available, it uses it for the save code and, if they are on, for the anonymous statistics</li>
+    </ul>
+    <ul lang="fr">
+      <li>Il ne conserve de données personnelles sur aucun serveur</li>
+      <li>Il ne demande ni création de compte, ni e-mail, ni âge</li>
+      <li>Il ne contient pas de publicité</li>
+      <li>Il n’utilise ni outils d’analyse d’autres entreprises ni outils de pistage : les seules statistiques sont nos propres chiffres anonymes</li>
+      <li>Il ne partage pas de données personnelles avec des tiers (les sponsors ne reçoivent que des totaux anonymes)</li>
+      <li>Il n’utilise ni cookies ni identifiants publicitaires</li>
+      <li>Il n’a pas besoin d’internet pour jouer en solo : quand une connexion est disponible, il s’en sert pour le code de sauvegarde et, si elles sont activées, pour les statistiques anonymes</li>
+    </ul>
+    <ul lang="es">
+      <li>No conserva datos personales en ningún servidor</li>
+      <li>No pide crear una cuenta, ni el correo, ni la edad</li>
+      <li>No tiene publicidad</li>
+      <li>No usa herramientas de análisis de otras empresas ni de rastreo: las únicas estadísticas son nuestros propios números anónimos</li>
+      <li>No comparte datos personales con terceros (a los patrocinadores solo les llegan totales anónimos)</li>
+      <li>No usa cookies ni identificadores publicitarios</li>
+      <li>No necesita internet para jugar en solitario: cuando hay conexión, la usa para el código de guardado y, si están activadas, para las estadísticas anónimas</li>
+    </ul>
+    <ul lang="de">
+      <li>Es speichert auf keinem Server persönliche Daten</li>
+      <li>Es verlangt kein Konto, keine E-Mail-Adresse und kein Alter</li>
+      <li>Es enthält keine Werbung</li>
+      <li>Es nutzt keine Analysewerkzeuge anderer Unternehmen und kein Tracking: Die einzigen Statistiken sind unsere eigenen anonymen Zahlen</li>
+      <li>Es gibt keine persönlichen Daten an Dritte weiter (Sponsoren bekommen nur anonyme Summen)</li>
+      <li>Es nutzt keine Cookies und keine Werbe-IDs</li>
+      <li>Es braucht kein Internet, um allein zu spielen: Besteht eine Verbindung, nutzt es sie für den Speichercode und, wenn sie eingeschaltet sind, für die anonymen Statistiken</li>
+    </ul>
+    <ul lang="pt-BR">
+      <li>Não guarda dados pessoais em nenhum servidor</li>
+      <li>Não pede para criar conta, nem e-mail, nem idade</li>
+      <li>Não tem anúncios</li>
+      <li>Não usa ferramentas de análise de outras empresas nem de rastreamento: as únicas estatísticas são os nossos próprios números anônimos</li>
+      <li>Não compartilha dados pessoais com terceiros (os patrocinadores só recebem totais anônimos)</li>
+      <li>Não usa cookies nem identificadores de publicidade</li>
+      <li>Não precisa de internet para jogar sozinho: quando há conexão, usa para o código de salvamento e, se estiverem ligadas, para as estatísticas anônimas</li>
     </ul>
   </section>
 
   <section>
     <h2 lang="it">Come cancellare i tuoi dati</h2>
     <h2 lang="en">How to delete your data</h2>
-    <p lang="it">I dati di gioco stanno sul tuo dispositivo e li controlli tu. Puoi azzerare l'avanzamento dal Profilo, oppure cancellare tutto insieme disinstallando l'app o svuotandone i dati dalle impostazioni del telefono. Il nostro server non conserva copie, né delle partite online né delle verifiche dei codici, quindi non c'è nulla da chiederci di cancellare.</p>
-    <p lang="en">Your game data is on your device and you are in control of it. You can reset your progress from the Profile, or delete everything at once by uninstalling the app or clearing its data in your phone’s settings. Our server keeps no copies, neither of online matches nor of save code verifications, so there is nothing to ask us to delete.</p>
+    <h2 lang="fr">Comment effacer tes données</h2>
+    <h2 lang="es">Cómo borrar tus datos</h2>
+    <h2 lang="de">So löschst du deine Daten</h2>
+    <h2 lang="pt-BR">Como apagar os seus dados</h2>
+    <p lang="it">I dati di gioco stanno sul tuo dispositivo e li controlli tu. Puoi azzerare l'avanzamento dal Profilo, oppure cancellare tutto insieme disinstallando l'app o svuotandone i dati dalle impostazioni del telefono. Il nostro server non conserva copie, né delle partite online né delle verifiche dei codici, quindi non c'è nulla da chiederci di cancellare. Le statistiche anonime sono totali che non si possono collegare a te: non c'è niente che ti riguardi da cancellare, e per non mandarne più basta spegnerle in Personalizza.</p>
+    <p lang="en">Your game data is on your device and you are in control of it. You can reset your progress from the Profile, or delete everything at once by uninstalling the app or clearing its data in your phone’s settings. Our server keeps no copies, neither of online matches nor of save code verifications, so there is nothing to ask us to delete. The anonymous statistics are totals that cannot be linked to you: there is nothing about you to delete, and to stop sending them just turn them off in Customise.</p>
+    <p lang="fr">Les données de jeu sont sur ton appareil et c’est toi qui les contrôles. Tu peux remettre ta progression à zéro depuis le Profil, ou tout effacer d’un coup en désinstallant l’app ou en vidant ses données dans les réglages du téléphone. Notre serveur ne garde aucune copie, ni des parties en ligne ni des vérifications des codes : il n’y a donc rien à nous demander d’effacer. Les statistiques anonymes sont des totaux qu’on ne peut pas relier à toi : il n’y a rien te concernant à effacer, et pour ne plus en envoyer, il suffit de les désactiver dans Personnaliser.</p>
+    <p lang="es">Los datos del juego están en tu dispositivo y los controlas tú. Puedes reiniciar tu progreso desde el Perfil, o borrarlo todo de una vez desinstalando la app o borrando sus datos en los ajustes del teléfono. Nuestro servidor no guarda copias, ni de las partidas online ni de las verificaciones de los códigos, así que no hay nada que pedirnos que borremos. Las estadísticas anónimas son totales que no se pueden relacionar contigo: no hay nada tuyo que borrar, y para no enviar más basta con desactivarlas en Personalizar.</p>
+    <p lang="de">Deine Spieldaten liegen auf deinem Gerät, und du hast sie in der Hand. Du kannst deinen Fortschritt im Profil zurücksetzen oder alles auf einmal löschen, indem du die App deinstallierst oder ihre Daten in den Einstellungen des Handys löschst. Unser Server bewahrt keine Kopien auf, weder von Online-Partien noch von den Prüfungen der Codes – es gibt also nichts, worum du uns zum Löschen bitten müsstest. Die anonymen Statistiken sind Summen, die sich nicht mit dir verbinden lassen: Es gibt nichts über dich zu löschen, und wenn du keine mehr schicken willst, schalte sie einfach unter Anpassen aus.</p>
+    <p lang="pt-BR">Os dados do jogo ficam no seu dispositivo e quem controla é você. Você pode zerar o progresso pelo Perfil, ou apagar tudo de uma vez desinstalando o app ou limpando os dados dele nas configurações do celular. O nosso servidor não guarda cópias, nem das partidas online nem das verificações dos códigos, então não há nada para pedir que a gente apague. As estatísticas anônimas são totais que não podem ser ligados a você: não há nada sobre você para apagar, e para não enviar mais é só desligá-las em Personalizar.</p>
     <p lang="it">Il gioco offre anche un codice di backup che puoi generare e conservare dove preferisci per ritrovare i tuoi progressi su un altro telefono o nella versione per browser. Quel codice lo crei e lo custodisci tu: non ne riceviamo copia. È una scelta voluta: per non raccogliere i tuoi dati il gioco non usa account, nemmeno quello di Google o di Apple.</p>
     <p lang="en">The game also offers a backup code you can generate and keep wherever you like, to restore your progress on another phone or in the browser version. You create and keep that code yourself: we never receive a copy. This is a deliberate choice: so as not to collect your data, the game uses no accounts, not even your Google or Apple account.</p>
+    <p lang="fr">Le jeu propose aussi un code de sauvegarde que tu peux générer et garder où tu veux, pour retrouver ta progression sur un autre téléphone ou dans la version navigateur. Ce code, c’est toi qui le crées et qui le gardes : nous n’en recevons aucune copie. C’est un choix voulu : pour ne pas collecter tes données, le jeu n’utilise aucun compte, pas même ton compte Google ou Apple.</p>
+    <p lang="es">El juego también ofrece un código de copia de seguridad que puedes generar y guardar donde prefieras, para recuperar tu progreso en otro teléfono o en la versión del navegador. Ese código lo creas y lo guardas tú: nosotros no recibimos ninguna copia. Es una decisión a propósito: para no recoger tus datos, el juego no usa cuentas, ni siquiera la de Google o la de Apple.</p>
+    <p lang="de">Das Spiel bietet außerdem einen Sicherungscode, den du erstellen und aufbewahren kannst, wo du willst, um deinen Fortschritt auf einem anderen Handy oder in der Browserversion wiederherzustellen. Diesen Code erstellst und verwahrst du selbst: Wir bekommen keine Kopie davon. Das ist eine bewusste Entscheidung: Damit keine Daten von dir gesammelt werden, nutzt das Spiel keine Konten, auch nicht dein Google- oder Apple-Konto.</p>
+    <p lang="pt-BR">O jogo também oferece um código de backup que você pode gerar e guardar onde preferir, para recuperar o seu progresso em outro celular ou na versão para navegador. Esse código é você quem cria e guarda: não recebemos nenhuma cópia. É uma escolha proposital: para não coletar os seus dados, o jogo não usa contas, nem mesmo a do Google ou da Apple.</p>
+  </section>
+
+  <section>
+    <h2 lang="it">I tuoi diritti</h2>
+    <h2 lang="en">Your rights</h2>
+    <h2 lang="fr">Tes droits</h2>
+    <h2 lang="es">Tus derechos</h2>
+    <h2 lang="de">Deine Rechte</h2>
+    <h2 lang="pt-BR">Os seus direitos</h2>
+    <p lang="it">Il titolare del trattamento è Thomas Albertini (vedi «Chi siamo»). I pochi dati che passano dal nostro server si trattano per due motivi. Il <strong>gioco online</strong> e la <strong>verifica dei codici di salvataggio</strong> perché sei tu a chiederli, quando entri nel Multigiocatore o quando i tuoi progressi cambiano: servono a darti la funzione che usi. Le <strong>statistiche anonime</strong> e la <strong>sicurezza del server</strong> (per esempio il limite alle richieste, per cui l'indirizzo IP resta nella memoria del server per un minuto) per il nostro interesse legittimo a migliorare il gioco, a rendere conto agli sponsor e a tenere il servizio funzionante e protetto.</p>
+    <p lang="en">The data controller is Thomas Albertini (see “Who we are”). The little data that passes through our server is processed for two reasons. <strong>Online play</strong> and <strong>save code verification</strong> because you ask for them, when you enter Multiplayer or when your progress changes: they are needed to provide the feature you are using. The <strong>anonymous statistics</strong> and <strong>server security</strong> (for example the limit on requests, for which the IP address stays in the server’s memory for one minute) on the basis of our legitimate interest in improving the game, reporting to sponsors and keeping the service working and protected.</p>
+    <p lang="fr">Le responsable du traitement est Thomas Albertini (voir « Qui sommes-nous »). Les quelques données qui passent par notre serveur sont traitées pour deux raisons. Le <strong>jeu en ligne</strong> et la <strong>vérification des codes de sauvegarde</strong>, parce que c’est toi qui les demandes, quand tu entres dans le Multijoueur ou quand ta progression change : ils servent à te fournir la fonction que tu utilises. Les <strong>statistiques anonymes</strong> et la <strong>sécurité du serveur</strong> (par exemple la limite des requêtes, pour laquelle l’adresse IP reste une minute dans la mémoire du serveur), sur la base de notre intérêt légitime à améliorer le jeu, à rendre compte aux sponsors et à garder le service opérationnel et protégé.</p>
+    <p lang="es">El responsable del tratamiento es Thomas Albertini (ver «Quiénes somos»). Los pocos datos que pasan por nuestro servidor se tratan por dos motivos. El <strong>juego online</strong> y la <strong>verificación de los códigos de guardado</strong>, porque los pides tú, cuando entras en el Multijugador o cuando cambia tu progreso: sirven para darte la función que usas. Las <strong>estadísticas anónimas</strong> y la <strong>seguridad del servidor</strong> (por ejemplo, el límite de peticiones, por el que la dirección IP se queda un minuto en la memoria del servidor), por nuestro interés legítimo en mejorar el juego, rendir cuentas a los patrocinadores y mantener el servicio en marcha y protegido.</p>
+    <p lang="de">Verantwortlicher ist Thomas Albertini (siehe „Wer wir sind“). Die wenigen Daten, die über unseren Server laufen, werden aus zwei Gründen verarbeitet. Das <strong>Online-Spiel</strong> und die <strong>Prüfung der Speichercodes</strong>, weil du sie anforderst – wenn du Mehrspieler öffnest oder sich dein Fortschritt ändert: Sie sind nötig, um dir die Funktion bereitzustellen, die du nutzt. Die <strong>anonymen Statistiken</strong> und die <strong>Sicherheit des Servers</strong> (zum Beispiel die Begrenzung der Anfragen, für die die IP-Adresse eine Minute im Arbeitsspeicher des Servers bleibt) aufgrund unseres berechtigten Interesses, das Spiel zu verbessern, Sponsoren Rechenschaft abzulegen und den Dienst funktionsfähig und geschützt zu halten.</p>
+    <p lang="pt-BR">O controlador dos dados é Thomas Albertini (veja “Quem somos”). Os poucos dados que passam pelo nosso servidor são tratados por dois motivos. O <strong>jogo online</strong> e a <strong>verificação dos códigos de salvamento</strong>, porque é você quem pede, quando entra no Multijogador ou quando o seu progresso muda: eles servem para oferecer a função que você usa. As <strong>estatísticas anônimas</strong> e a <strong>segurança do servidor</strong> (por exemplo, o limite de pedidos, para o qual o endereço IP fica um minuto na memória do servidor), com base no nosso legítimo interesse em melhorar o jogo, prestar contas aos patrocinadores e manter o serviço funcionando e protegido.</p>
+    <p lang="it">Puoi chiederci in qualsiasi momento di accedere ai dati che ti riguardano, di correggerli o cancellarli, di limitarne il trattamento o di opporti, scrivendo a <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. Il server non conserva nulla che si possa collegare a te, quindi di solito non c'è niente da consegnare o da cancellare; per le statistiche anonime basta spegnerle in Personalizza → Privacy. Se pensi che i tuoi dati non siano trattati correttamente, puoi presentare reclamo al <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>) oppure all'autorità per la protezione dei dati del paese in cui vivi.</p>
+    <p lang="en">You can ask us at any time to access the data about you, to correct or delete it, to restrict its processing or to object to it, by writing to <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. The server keeps nothing that can be linked to you, so there is usually nothing to hand over or delete; to stop the anonymous statistics, just turn them off in Customise → Privacy. If you think your data is not being handled properly, you can lodge a complaint with the Italian data protection authority, the <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>), or with the data protection authority of the country where you live.</p>
+    <p lang="fr">Tu peux nous demander à tout moment d’accéder aux données qui te concernent, de les rectifier ou de les effacer, d’en limiter le traitement ou de t’y opposer, en écrivant à <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. Le serveur ne garde rien qu’on puisse relier à toi : en général, il n’y a donc rien à te communiquer ni à effacer ; pour les statistiques anonymes, il suffit de les désactiver dans Personnaliser → Confidentialité. Si tu penses que tes données ne sont pas traitées correctement, tu peux déposer une réclamation auprès de l’autorité italienne de protection des données, le <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>), ou auprès de l’autorité de protection des données du pays où tu vis (en France, la CNIL).</p>
+    <p lang="es">Puedes pedirnos en cualquier momento acceder a los datos que te conciernen, corregirlos o borrarlos, limitar su tratamiento u oponerte a él, escribiendo a <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. El servidor no guarda nada que se pueda relacionar contigo, así que normalmente no hay nada que entregar ni que borrar; para las estadísticas anónimas basta con desactivarlas en Personalizar → Privacidad. Si crees que tus datos no se tratan correctamente, puedes presentar una reclamación ante la autoridad italiana de protección de datos, el <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>), o ante la autoridad de protección de datos del país en el que vives (en España, la AEPD).</p>
+    <p lang="de">Du kannst jederzeit verlangen, Auskunft über die Daten zu bekommen, die dich betreffen, sie berichtigen oder löschen zu lassen, ihre Verarbeitung einzuschränken oder ihr zu widersprechen – schreib dazu an <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. Der Server bewahrt nichts auf, was sich mit dir verbinden lässt; meistens gibt es also nichts herauszugeben oder zu löschen. Die anonymen Statistiken schaltest du einfach unter Anpassen → Datenschutz aus. Wenn du meinst, dass deine Daten nicht korrekt verarbeitet werden, kannst du dich bei der italienischen Datenschutzbehörde beschweren, dem <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>), oder bei der Datenschutzaufsichtsbehörde des Landes, in dem du lebst.</p>
+    <p lang="pt-BR">Você pode nos pedir a qualquer momento para acessar os dados que dizem respeito a você, corrigi-los ou apagá-los, limitar o tratamento ou se opor a ele, escrevendo para <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a>. O servidor não guarda nada que possa ser ligado a você, então em geral não há nada para entregar ou apagar; para as estatísticas anônimas, é só desligá-las em Personalizar → Privacidade. Se você achar que os seus dados não estão sendo tratados corretamente, pode apresentar uma reclamação à autoridade italiana de proteção de dados, o <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>), ou à autoridade de proteção de dados do país onde você mora (no Brasil, a ANPD).</p>
   </section>
 
   <section>
     <h2 lang="it">Bambini</h2>
     <h2 lang="en">Children</h2>
+    <h2 lang="fr">Enfants</h2>
+    <h2 lang="es">Niños</h2>
+    <h2 lang="de">Kinder</h2>
+    <h2 lang="pt-BR">Crianças</h2>
     <p lang="it">Il gioco non chiede l'età, non richiede un account e non contiene pubblicità né acquisti. Nelle partite online gli altri giocatori vedono solo il soprannome scelto nel profilo: non esiste una chat e non si possono scambiare messaggi.</p>
     <p lang="en">The game does not ask for age, does not require an account, and contains no ads or purchases. In online matches other players only see the nickname chosen in the profile: there is no chat and no way to exchange messages.</p>
+    <p lang="fr">Le jeu ne demande pas l’âge, ne nécessite pas de compte et ne contient ni publicité ni achats. Dans les parties en ligne, les autres joueurs ne voient que le pseudo choisi dans le profil : il n’y a pas de chat et on ne peut pas échanger de messages.</p>
+    <p lang="es">El juego no pide la edad, no requiere cuenta y no tiene publicidad ni compras. En las partidas online los demás jugadores solo ven el apodo elegido en el perfil: no hay chat y no se pueden intercambiar mensajes.</p>
+    <p lang="de">Das Spiel fragt nicht nach dem Alter, braucht kein Konto und enthält weder Werbung noch Käufe. In Online-Partien sehen die anderen Spieler nur den im Profil gewählten Spitznamen: Es gibt keinen Chat, und man kann keine Nachrichten austauschen.</p>
+    <p lang="pt-BR">O jogo não pergunta a idade, não exige conta e não tem anúncios nem compras. Nas partidas online, os outros jogadores só veem o apelido escolhido no perfil: não existe chat e não dá para trocar mensagens.</p>
   </section>
 
   <section>
     <h2 lang="it">Funzioni in arrivo</h2>
     <h2 lang="en">Upcoming features</h2>
+    <h2 lang="fr">Fonctions à venir</h2>
+    <h2 lang="es">Funciones que llegarán</h2>
+    <h2 lang="de">Kommende Funktionen</h2>
+    <h2 lang="pt-BR">Funções que vão chegar</h2>
     <p lang="it">Il negozio non è ancora attivo. Quando arriverà, gli acquisti passeranno dallo store del telefono (Google Play o App Store), che gestisce il pagamento: questa informativa verrà aggiornata prima che venga attivato.</p>
     <p lang="en">The shop is not active yet. When it arrives, purchases will go through your phone’s store (Google Play or the App Store), which handles the payment: this policy will be updated before it is switched on.</p>
+    <p lang="fr">La boutique n’est pas encore active. Quand elle arrivera, les achats passeront par la boutique d’applications du téléphone (Google Play ou l’App Store), qui gère le paiement : cette politique sera mise à jour avant son ouverture.</p>
+    <p lang="es">La tienda todavía no está activa. Cuando llegue, las compras pasarán por la tienda de apps del teléfono (Google Play o App Store), que gestiona el pago: esta política se actualizará antes de activarla.</p>
+    <p lang="de">Der Shop ist noch nicht aktiv. Wenn er kommt, laufen Käufe über den App-Store deines Handys (Google Play oder App Store), der die Zahlung abwickelt: Diese Datenschutzerklärung wird aktualisiert, bevor er freigeschaltet wird.</p>
+    <p lang="pt-BR">A loja ainda não está ativa. Quando chegar, as compras vão passar pela loja de apps do celular (Google Play ou App Store), que cuida do pagamento: esta política será atualizada antes de a loja ser ativada.</p>
   </section>
 
   <section>
     <h2 lang="it">Modifiche a questa informativa</h2>
     <h2 lang="en">Changes to this policy</h2>
+    <h2 lang="fr">Modifications de cette politique</h2>
+    <h2 lang="es">Cambios en esta política</h2>
+    <h2 lang="de">Änderungen dieser Datenschutzerklärung</h2>
+    <h2 lang="pt-BR">Mudanças nesta política</h2>
     <p lang="it">Se cambierà il modo in cui il gioco tratta i dati, aggiorneremo questa pagina e la data qui sotto. Le modifiche sostanziali verranno segnalate anche nelle note della versione sugli store.</p>
     <p lang="en">If the way the game handles data changes, we will update this page and the date below. Substantial changes will also be noted in the release notes on the stores.</p>
+    <p lang="fr">Si la façon dont le jeu traite les données change, nous mettrons à jour cette page et la date ci-dessous. Les changements importants seront aussi signalés dans les notes de version sur les boutiques d’applications.</p>
+    <p lang="es">Si cambia la forma en que el juego trata los datos, actualizaremos esta página y la fecha de abajo. Los cambios importantes se indicarán también en las notas de la versión en las tiendas.</p>
+    <p lang="de">Wenn sich ändert, wie das Spiel mit Daten umgeht, aktualisieren wir diese Seite und das Datum unten. Wesentliche Änderungen werden auch in den Versionshinweisen in den Stores erwähnt.</p>
+    <p lang="pt-BR">Se mudar a forma como o jogo trata os dados, vamos atualizar esta página e a data abaixo. As mudanças importantes também serão avisadas nas notas da versão nas lojas.</p>
   </section>
 
   <footer>
-    <p lang="it">Ultimo aggiornamento: 17 novembre 2026 · Contatto: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
-    <p lang="en">Last updated: 17 November 2026 · Contact: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <!-- la data si scrive il giorno in cui l'informativa si pubblica davvero (Thomas, 24/11/2026) -->
+    <p lang="it">Ultimo aggiornamento: 24 novembre 2026 · Contatto: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="en">Last updated: November 24, 2026 · Contact: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="fr">Dernière mise à jour : 24 novembre 2026 · Contact : <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="es">Última actualización: 24 de noviembre de 2026 · Contacto: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="de">Zuletzt aktualisiert: 24. November 2026 · Kontakt: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
+    <p lang="pt-BR">Última atualização: 24 de novembro de 2026 · Contato: <a href="mailto:accretionapp@gmail.com">accretionapp@gmail.com</a></p>
   </footer>
 
 </div>
+<script>
+  /* la lingua: quella del link (#it, #en, #fr, #es, #de, #pt: il gioco apre l'informativa nella sua lingua), poi quella del browser,
+     altrimenti l'inglese; i link in alto la cambiano */
+  (function () {
+    var L = ['it', 'en', 'fr', 'es', 'de', 'pt'];
+    var TITOLI = { it: 'Informativa sulla privacy', en: 'Privacy policy', fr: 'Politique de confidentialité', es: 'Política de privacidad', de: 'Datenschutzerklärung', pt: 'Política de privacidade' };
+    function scegli() {
+      var h = (location.hash || '').slice(1).toLowerCase();
+      if (L.indexOf(h) >= 0) return h;
+      var n = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+      for (var i = 0; i < n.length; i++) { var x = String(n[i] || '').slice(0, 2).toLowerCase(); if (L.indexOf(x) >= 0) return x; }
+      return 'en';
+    }
+    function metti(l) {
+      document.body.setAttribute('data-l', l);
+      document.documentElement.lang = l === 'pt' ? 'pt-BR' : l;
+      document.title = 'Black Hole Rumble — ' + TITOLI[l];
+      var a = document.querySelectorAll('.langs a');
+      for (var i = 0; i < a.length; i++) a[i].className = a[i].getAttribute('data-l') === l ? 'ora' : '';
+    }
+    metti(scegli());
+    window.addEventListener('hashchange', function () { metti(scegli()); });
+  })();
+</script>
 </body>
 </html>
